@@ -185,7 +185,7 @@ if($_SESSION["perfil"] == "Especial"){
 
                           if($_SESSION["perfil"] == "Administrador"){
 
-                            echo '<!--<button class="btn btn-danger btnEliminarCenso" idVenta="'.$value["idPro"].'"><i class="fa fa-times"></i></button>-->';
+                            echo '<button class="btn btn-danger btnEliminarProgreso" idProgreso="'.$value["idPro"].'"><i class="fa fa-times"></i></button>';
 
                           }
 
@@ -205,8 +205,8 @@ if($_SESSION["perfil"] == "Especial"){
 
        <?php
 
-      $eliminarVenta = new ControladorVentas();
-      $eliminarVenta -> ctrEliminarVenta();
+      $eliminarProgreso = new ControladorProgreso();
+      $eliminarProgreso -> ctrEliminarProgreso();
 
       ?>
        

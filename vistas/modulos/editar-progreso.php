@@ -12,7 +12,7 @@
       
       <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
-      <li class="active">Crear venta</li>
+      <li class="active">Editar progreso</li>
     
     </ol>
 
@@ -70,7 +70,9 @@
                     
                     <span class="input-group-addon"><i class="fa fa-user"></i></span> 
 
-                    <input type="text" class="form-control" id="nuevoVendedor" value="<?php echo $progreso["user"]; ?>" readonly>
+                    <input type="text" class="form-control" id="nuevoVendedor" name="nuevoVendedor" value="<?php echo $progreso["user"]; ?>" readonly>
+                    <input type="hidden" class="form-control" id="nuevoIDPro" name="nuevoIDPro" value="<?php echo $progreso["idPro"]; ?>" readonly>
+                    <input type="hidden" class="form-control" id="agregarID" value="<?php echo $progreso["idProyec"]; ?>" readonly>
 
                     <!--<input type="hidden" name="idVendedor" value="<?php /*echo $vendedor["id"];*/ ?>">-->
 
@@ -95,6 +97,22 @@
                 </div>-->
 
                 <!--=====================================
+                ENTRADA DEL PROYECTO
+                ======================================--> 
+
+                <div class="form-group" style="display:none;">
+                  
+                  <div class="input-group">
+                    
+                    <span class="input-group-addon"><i class="fa fa-th"></i></span>
+
+                   <input type="hidden" class="form-control" id="nuevaVenta" name="editarVenta" value="<?php echo $progreso["nomPro"];?>" readonly>
+               
+                  </div>
+                
+                </div>
+
+                <!--=====================================
                 ENTRADA DEL CLIENTE
                 ======================================--> 
 
@@ -106,7 +124,7 @@
                     
                     <select class="form-control" id="seleccionarCliente" name="seleccionarCliente" required>
 
-                    <option value="<?php echo $cliente["id"]; ?>"><?php echo $progreso["cliente"]; ?></option>
+                    <!--<option value="<?php //echo $progreso["cliente"]; ?>"><?php //echo $progreso["cliente"]; ?></option>-->
 
                     <?php
 
@@ -117,11 +135,11 @@
 
                        foreach ($categorias as $key => $value) { if($value["nombre"] == $progreso["cliente"]) {?>
 
-                         <option value="<?php echo $value["id"]; ?>"><?php echo $progreso["cliente"]; ?></option>
+                         <option value="<?php echo $progreso["cliente"]; ?>" selected><?php echo $progreso["cliente"]; ?></option>
 
                        <?php }else{ ?>
 
-                        <option value="<?php echo $value["id"]; ?>"><?php echo $value["nombre"]; ?></option>
+                        <option value="<?php echo $value["nombre"]; ?>"><?php echo $value["nombre"]; ?></option>
 
                        <?php } 
                      } ?>
@@ -170,7 +188,8 @@
 
                         <div class="col-xs-3">
               
-                          <input type="text" class="form-control nuevoProyectoMaterial" name="nuevoProyectoMaterial" min="1" value="'.$progreso["nomPro"].'" nuevoProyectoMaterial="'.$progreso["nomPro"].'" readonly>
+                          <input type="text" class="form-control agregarProyecto" name="agregarProyecto" min="1" value="'.$progreso["nomPro"].'" agregarProyecto="'.$progreso["nomPro"].'" readonly>
+                          <input type="hidden" class="form-control agregarID" idProducto="'.$progreso["idProyec"].'" name="agregarID" value="'.$progreso["idProyec"].'"readonly required>
 
                         </div>
 
@@ -208,11 +227,11 @@
 
                 <button type="button" class="btn btn-default hidden-lg btnAgregarProducto">Agregar producto</button>
 
-                <hr>
+                <!--hr>-->
 
-                <div class="row">
+                <!--<div class="row">
 
-                  <!--=====================================
+                  =====================================
                   ENTRADA IMPUESTOS Y TOTAL
                   ======================================
                   
@@ -270,11 +289,9 @@
 
                     </table>
 
-                  </div>-->
+                  </div>
 
-                </div>
-
-                <hr>
+                </div>-->
 
                 <!--=====================================
                 ENTRADA MÉTODO DE PAGO
@@ -312,6 +329,7 @@
           <div class="box-footer">
 
             <button type="submit" class="btn btn-primary pull-right">Guardar cambios</button>
+            <!--<button class="btn btn-secondary pull-left btnRegresarHistorial">Cancelar</button>-->
 
           </div>
 
@@ -319,8 +337,8 @@
 
         <?php
 
-          $editarVenta = new ControladorVentas();
-          $editarVenta -> ctrEditarVenta();
+          $editarProgreso = new ControladorProgreso();
+          $editarProgreso -> ctrEditarProgreso();
           
         ?>
 

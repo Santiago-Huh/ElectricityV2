@@ -97,4 +97,30 @@ class ModeloProgreso{
 
 	}
 
+	/*=============================================
+	ELIMINAR PROGRESO
+	=============================================*/
+
+	static public function mdlEliminarProgreso($tabla, $datos){
+
+		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE idPro = :idPro");
+
+		$stmt -> bindParam(":idPro", $datos, PDO::PARAM_INT);
+
+		if($stmt -> execute()){
+
+			return "ok";
+		
+		}else{
+
+			return "error";	
+
+		}
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
+
 }

@@ -102,7 +102,7 @@ class ControladorProgreso{
 			$fechaCliente = ModeloClientes::mdlActualizarCliente($tablaClientes, $item1b, $valor1b, $valor);
 
 			/*=============================================
-			GUARDAR LA COMPRA
+			GUARDAR EL PROGRESO
 			=============================================*/	
 
 			$tabla = "progreso";
@@ -154,12 +154,12 @@ class ControladorProgreso{
 			/*=============================================
 			FORMATEAR TABLA DE PRODUCTOS Y LA DE CLIENTES
 			=============================================*/
-			$tabla = "ventas";
+			$tabla = "progreso";
 
-			$item = "codigo";
+			$item = "nomPro";
 			$valor = $_POST["editarVenta"];
 
-			$traerVenta = ModeloVentas::mdlMostrarVentas($tabla, $item, $valor);
+			$traerVenta = ModeloProgreso::mdlMostrarProgresos($tabla, $item, $valor);
 
 			/*=============================================
 			REVISAR SI VIENE PRODUCTOS EDITADOS
@@ -167,7 +167,7 @@ class ControladorProgreso{
 
 			if($_POST["listaProductos"] == ""){
 
-				$listaProductos = $traerVenta["productos"];
+				$listaProductos = $traerVenta["descripM"];
 				$cambioProducto = false;
 
 
@@ -179,7 +179,7 @@ class ControladorProgreso{
 
 			if($cambioProducto){
 
-				$productos =  json_decode($traerVenta["productos"], true);
+				$productos =  json_decode($traerVenta["descripM"], true);
 
 				$totalProductosComprados = array();
 
@@ -209,7 +209,7 @@ class ControladorProgreso{
 
 				$tablaClientes = "clientes";
 
-				$itemCliente = "id";
+				$itemCliente = "nombre";
 				$valorCliente = $_POST["seleccionarCliente"];
 
 				$traerCliente = ModeloClientes::mdlMostrarClientes($tablaClientes, $itemCliente, $valorCliente);
@@ -253,7 +253,7 @@ class ControladorProgreso{
 
 				$tablaClientes_2 = "clientes";
 
-				$item_2 = "id";
+				$item_2 = "nombre";
 				$valor_2 = $_POST["seleccionarCliente"];
 
 				$traerCliente_2 = ModeloClientes::mdlMostrarClientes($tablaClientes_2, $item_2, $valor_2);
@@ -279,17 +279,16 @@ class ControladorProgreso{
 			GUARDAR CAMBIOS DE LA COMPRA
 			=============================================*/	
 
-			$datos = array("id_vendedor"=>$_POST["idVendedor"],
-						   "id_cliente"=>$_POST["seleccionarCliente"],
-						   "codigo"=>$_POST["editarVenta"],
-						   "productos"=>$listaProductos,
-						   "impuesto"=>$_POST["nuevoPrecioImpuesto"],
-						   "neto"=>$_POST["nuevoPrecioNeto"],
-						   "total"=>$_POST["totalVenta"],
-						   "metodo_pago"=>$_POST["listaMetodoPago"]);
+			$datos = array("idProyec"=>$_POST["agregarID"],
+							"nomPro"=>$_POST["editarVenta"],
+							"user"=>$_POST["nuevoVendedor"],
+							"cliente"=>$_POST["seleccionarCliente"],
+							"descripM"=>$listaProductos,
+							"cantidadMP"=>$_POST["nuevaCantidadProducto"],
+							"idPro"=>$_POST["nuevoIDPro"]);
 
 
-			$respuesta = ModeloVentas::mdlEditarVenta($tabla, $datos);
+			$respuesta = ModeloProgreso::mdlEditarProgreso($tabla, $datos);
 
 			if($respuesta == "ok"){
 
@@ -299,13 +298,13 @@ class ControladorProgreso{
 
 				swal({
 					  type: "success",
-					  title: "La venta ha sido editada correctamente",
+					  title: "El progreso ha sido editado correctamente",
 					  showConfirmButton: true,
 					  confirmButtonText: "Cerrar"
 					  }).then((result) => {
 								if (result.value) {
 
-								window.location = "ventas";
+								window.location = "historial-progresos";
 
 								}
 							})
@@ -314,6 +313,149 @@ class ControladorProgreso{
 
 			}
 
+		}
+
+	}
+
+	/*=============================================
+	ELIMINAR PROGRESO
+	=============================================*/
+
+	static public function ctrEliminarProgreso(){
+
+		if(isset($_GET["idProgreso"])){
+
+			$tabla = "progreso";
+
+			$item = "idPro";
+			$valor = $_GET["idProgreso"];
+
+			$traerVenta = ModeloProgreso::mdlMostrarProgresos($tabla, $item, $valor);
+
+			/*=============================================
+			ACTUALIZAR FECHA ÚLTIMA COMPRA
+			=============================================*/
+
+			$tablaClientes = "clientes";
+
+			$itemVentas = null;
+			$valorVentas = null;
+
+			$traerVentas = ModeloProgreso::mdlMostrarProgresos($tabla, $itemVentas, $valorVentas);
+
+			$guardarFechas = array();
+
+			foreach ($traerVentas as $key => $value) {
+				
+				if($value["cliente"] == $traerVenta["cliente"]){
+
+					array_push($guardarFechas, $value["fecha"]);
+
+				}
+
+			}
+
+			if(count($guardarFechas) > 1){
+
+				if($traerVenta["fecha"] > $guardarFechas[count($guardarFechas)-2]){
+
+					$item = "ultima_compra";
+					$valor = $guardarFechas[count($guardarFechas)-2];
+					$valorIdCliente = $traerVenta["cliente"];
+
+					$comprasCliente = ModeloClientes::mdlActualizarCliente($tablaClientes, $item, $valor, $valorIdCliente);
+
+				}else{
+
+					$item = "ultima_compra";
+					$valor = $guardarFechas[count($guardarFechas)-1];
+					$valorIdCliente = $traerVenta["cliente"];
+
+					$comprasCliente = ModeloClientes::mdlActualizarCliente($tablaClientes, $item, $valor, $valorIdCliente);
+
+				}
+
+
+			}else{
+
+				$item = "ultima_compra";
+				$valor = "0000-00-00 00:00:00";
+				$valorIdCliente = $traerVenta["cliente"];
+
+				$comprasCliente = ModeloClientes::mdlActualizarCliente($tablaClientes, $item, $valor, $valorIdCliente);
+
+			}
+
+			/*=============================================
+			FORMATEAR TABLA DE PRODUCTOS Y LA DE CLIENTES
+			=============================================*/
+
+			$productos =  json_decode($traerVenta["descripM"], true);
+
+			$totalProductosComprados = array();
+
+			foreach ($productos as $key => $value) {
+
+				array_push($totalProductosComprados, $value["cantidad"]);
+				
+				$tablaProductos = "productos";
+
+				$item = "id";
+				$valor = $value["id"];
+				$orden = "id";
+
+				$traerProducto = ModeloProductos::mdlMostrarProductos($tablaProductos, $item, $valor, $orden);
+
+				$item1a = "ventas";
+				$valor1a = $traerProducto["ventas"] - $value["cantidad"];
+
+				$nuevasVentas = ModeloProductos::mdlActualizarProducto($tablaProductos, $item1a, $valor1a, $valor);
+
+				$item1b = "stock";
+				$valor1b = $value["cantidad"] + $traerProducto["stock"];
+
+				$nuevoStock = ModeloProductos::mdlActualizarProducto($tablaProductos, $item1b, $valor1b, $valor);
+
+			}
+
+			$tablaClientes = "clientes";
+
+			$itemCliente = "nombre";
+			$valorCliente = $traerVenta["cliente"];
+
+			$traerCliente = ModeloClientes::mdlMostrarClientes($tablaClientes, $itemCliente, $valorCliente);
+
+			$item1a = "compras";
+			$valor1a = $traerCliente["compras"] - array_sum($totalProductosComprados);
+
+			$comprasCliente = ModeloClientes::mdlActualizarCliente($tablaClientes, $item1a, $valor1a, $valorCliente);
+
+			/*=============================================
+			ELIMINAR VENTA
+			=============================================*/
+
+			$respuesta = ModeloProgreso::mdlEliminarProgreso($tabla, $_GET["idProgreso"]);
+
+			if($respuesta == "ok"){
+
+				echo'<script>
+
+				swal({
+					  type: "success",
+					  title: "El progreso ha sido borrado correctamente",
+					  showConfirmButton: true,
+					  confirmButtonText: "Cerrar"
+					  }).then(function(result){
+								if (result.value) {
+
+								window.location = "historial-progresos";
+
+								}
+							})
+
+				</script>';
+
+			}		
 		}
 
 	}

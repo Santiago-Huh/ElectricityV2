@@ -459,13 +459,25 @@ function listarProductos(){
 }
 
 /*=============================================
-BOTON EDITAR VENTA
+BOTON EDITAR PROGRESO
 =============================================*/
 $(".tablas").on("click", ".btnEditarProgreso", function(){
 
 	var idProgreso = $(this).attr("idProgreso");
 
 	window.location = "index.php?ruta=editar-progreso&idProgreso="+idProgreso;
+
+
+})
+
+/*=============================================
+BOTON CANCELAR EDICION
+=============================================*/
+$(".tablas").on("click", ".btnRegregsarHistorial", function(){
+
+	var idProgreso = $(this).attr("idProgreso");
+
+	window.location = "index.php?ruta=historial-progresos";
 
 
 })
@@ -512,3 +524,29 @@ $('.tablaVentas').on( 'draw.dt', function(){
 	quitarAgregarProducto();
 
 })
+
+/*=============================================
+BORRAR PROGRESO
+=============================================*/
+$(".tablas").on("click", ".btnEliminarProgreso", function(){
+
+	var idProgreso = $(this).attr("idProgreso");
+  
+	swal({
+		  title: '¿Está seguro de borrar el progreso?',
+		  text: "¡Si no lo está puede cancelar la accíón!",
+		  type: 'warning',
+		  showCancelButton: true,
+		  confirmButtonColor: '#3085d6',
+		  cancelButtonColor: '#d33',
+		  cancelButtonText: 'Cancelar',
+		  confirmButtonText: 'Si, borrar progreso!'
+		}).then(function(result){
+		  if (result.value) {
+			
+			  window.location = "index.php?ruta=historial-progresos&idProgreso="+idProgreso;
+		  }
+  
+	})
+  
+  })

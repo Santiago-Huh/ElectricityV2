@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-06-2019 a las 04:56:17
+-- Tiempo de generación: 14-06-2019 a las 21:49:16
 -- Versión del servidor: 10.1.39-MariaDB
 -- Versión de PHP: 7.3.5
 
@@ -191,10 +191,10 @@ INSERT INTO `productos` (`id`, `id_categoria`, `nomProyecto`, `codigo`, `descrip
 (77, '11', '', '1105', 'Tubo mts', '', 'vistas/img/productos/default/anonymous.png', 123, 431, 603.4, 0, '2019-05-13 02:37:31'),
 (78, '11', '', '1106', 'Clavos', '', 'vistas/img/productos/default/anonymous.png', 100, 2300, 3220, 0, '2019-05-13 05:20:59'),
 (79, '11', '', '1107', 'Hierro', '', 'vistas/img/productos/default/anonymous.png', 390, 200, 280, 10, '2019-05-13 06:43:55'),
-(80, '14', '', '1403', 'Cobre mts', '', 'vistas/img/productos/default/anonymous.png', 300, 1000, 1400, 0, '2019-05-13 06:33:02'),
-(81, '13', '', '1303', 'Cable de luz mts', 'Metros', 'vistas/img/productos/default/anonymous.png', 975, 10000, 20000, 25, '2019-05-28 21:18:10'),
-(82, '2', '', '1601', 'Cable reforzado', 'Metros', '', 329, 33, 46.2, 4, '2019-06-13 01:41:44'),
-(83, '2', 'Bruso', '', 'Fibra Optica', 'mts', '', 215, 2, 2, 7, '2019-06-13 01:41:44');
+(80, '14', '', '1403', 'Cobre mts', '', 'vistas/img/productos/default/anonymous.png', 300, 1000, 1400, 0, '2019-06-14 19:45:46'),
+(81, '13', '', '1303', 'Cable de luz mts', 'Metros', 'vistas/img/productos/default/anonymous.png', 975, 10000, 20000, 25, '2019-06-14 19:45:46'),
+(82, '2', '', '1601', 'Cable reforzado', 'Metros', '', 329, 33, 46.2, 4, '2019-06-14 19:42:31'),
+(83, '2', 'Bruso', '', 'Fibra Optica', 'mts', '', 208, 2, 2, 15, '2019-06-14 19:48:04');
 
 -- --------------------------------------------------------
 
@@ -218,8 +218,7 @@ CREATE TABLE `progreso` (
 --
 
 INSERT INTO `progreso` (`idPro`, `idProyec`, `nomPro`, `cliente`, `user`, `descripM`, `cantidadMP`, `fecha`) VALUES
-(3, 2, 'Bruso', 'Julian Villegas', 'Jorge', '[{\"id\":\"83\",\"descripcion\":\"Fibra Optica\",\"cantidad\":\"1\",\"stock\":\"216\",\"idProyect\":\"2\",\"proyecto\":\"Bruso\"}]', 2, '0000-00-00'),
-(4, 2, '', 'Antonio', 'Jorge', '[{\"id\":\"83\",\"descripcion\":\"Fibra Optica\",\"cantidad\":\"1\",\"stock\":\"215\",\"idProyect\":\"2\",\"proyecto\":\"Bruso\"},{\"id\":\"82\",\"descripcion\":\"Cable reforzado\",\"cantidad\":\"1\",\"stock\":\"329\",\"idProyect\":\"2\",\"proyecto\":\"\"}]', 2, '0000-00-00');
+(3, 2, 'Bruso', 'Julian Villegas', 'Jorge', '[{\"id\":\"83\",\"descripcion\":\"Fibra Optica\",\"cantidad\":\"2\",\"stock\":\"207\",\"idProyect\":\"2\",\"proyecto\":\"Bruso\"}]', 2, '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -319,7 +318,7 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`id`, `nombre`, `usuario`, `password`, `perfil`, `foto`, `estado`, `ultimo_login`, `fecha`) VALUES
 (1, 'Administrador', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'Administrador', 'vistas/img/usuarios/admin/191.jpg', 1, '2019-04-13 19:49:37', '2019-04-14 00:49:37'),
 (61, 'febo', 'febosadi', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'Administrador', '', 1, '2019-04-20 17:55:26', '2019-04-20 22:55:26'),
-(62, 'Jorge', 'jorge1', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'Administrador', '', 1, '2019-06-12 18:38:40', '2019-06-12 23:38:40'),
+(62, 'Jorge', 'jorge1', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'Administrador', '', 1, '2019-06-13 15:40:55', '2019-06-13 20:40:55'),
 (65, 'Santiago', 'Santi', '$2a$07$asxx54ahjppf45sd87a5autBMYI.dcfixEKwywxOvVu.ijNpIuH7i', 'Administrador', 'vistas/img/usuarios/Santi/466.jpg', 1, '2019-05-28 16:15:49', '2019-05-28 21:15:49');
 
 -- --------------------------------------------------------
@@ -450,7 +449,7 @@ ALTER TABLE `productos`
 -- AUTO_INCREMENT de la tabla `progreso`
 --
 ALTER TABLE `progreso`
-  MODIFY `idPro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idPro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `proyectos`
