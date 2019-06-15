@@ -41,7 +41,7 @@ class ModeloProductos{
 	=============================================*/
 	static public function mdlIngresarProducto($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_categoria, nomProyecto, descripcion, tipoM, stock, precio_compra, precio_venta) VALUES (:id_categoria, :nomProyecto, :descripcion, :tipoM, :stock, :precio_compra, :precio_venta)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_categoria, nomProyecto, descripcion, tipoM, stock) VALUES (:id_categoria, :nomProyecto, :descripcion, :tipoM, :stock)");
 
 		$stmt->bindParam(":id_categoria", $datos["id_categoria"], PDO::PARAM_INT);
 		$stmt->bindParam(":nomProyecto", $datos["nomProyecto"], PDO::PARAM_STR);
@@ -50,8 +50,8 @@ class ModeloProductos{
 		$stmt->bindParam(":tipoM", $datos["tipoM"], PDO::PARAM_STR);
 		//$stmt->bindParam(":imagen", $datos["imagen"], PDO::PARAM_STR);
 		$stmt->bindParam(":stock", $datos["stock"], PDO::PARAM_STR);
-		$stmt->bindParam(":precio_compra", $datos["precio_compra"], PDO::PARAM_STR);
-		$stmt->bindParam(":precio_venta", $datos["precio_venta"], PDO::PARAM_STR);
+		//$stmt->bindParam(":precio_compra", $datos["precio_compra"], PDO::PARAM_STR);
+		//$stmt->bindParam(":precio_venta", $datos["precio_venta"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
 

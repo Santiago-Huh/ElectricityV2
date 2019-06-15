@@ -56,14 +56,14 @@ if($_SESSION["perfil"] == "Vendedor"){
          <tr>
            
            <th style="width:10px">#</th>
-           <!--<th>Imagen</th>-->
-           <th>Código</th>
+           <!--<th>Imagen</th>
+           <th>Código</th>-->
            <th>Descripción</th>
            <th>Tipo Medida</th>
            <th>Proyecto</th>
            <th>Material disponible</th>
-           <th>Precio de compra</th>
-           <th>Precio de venta</th>
+           <!--<th>Precio de compra</th>
+           <th>Precio de venta</th>-->
            <th>Agregado</th>
            <th>Acciones</th>
            
@@ -211,11 +211,11 @@ MODAL AGREGAR PRODUCTO
 
                 <div class="col-xs-6">
                 
-                  <div class="input-group">
+                  <div class="input-group" style="display:none;">
                   
-                    <span class="input-group-addon"><i class="fa fa-arrow-up"></i></span> 
+                    <!--<span class="input-group-addon"><i class="fa fa-arrow-up"></i></span> 
 
-                    <input type="number" class="form-control input-lg" id="nuevoPrecioC" name="nuevoPrecioC" step="any" min="0" placeholder="Precio de compra" required>
+                    <input type="number" class="form-control input-lg" id="nuevoPrecioC" name="nuevoPrecioC" step="any" min="0" placeholder="Precio de compra" required>-->
 
                   </div>
 
@@ -225,11 +225,11 @@ MODAL AGREGAR PRODUCTO
 
                 <div class="col-xs-6">
                 
-                  <div class="input-group">
+                  <div class="input-group" style="display:none;">
                   
-                    <span class="input-group-addon"><i class="fa fa-arrow-down"></i></span> 
+                    <!--<span class="input-group-addon"><i class="fa fa-arrow-down"></i></span> 
 
-                    <input type="number" class="form-control input-lg" id="nuevoPrecioV" name="nuevoPrecioV" step="any" min="0" placeholder="Precio de venta" required>
+                    <input type="number" class="form-control input-lg" id="nuevoPrecioV" name="nuevoPrecioV" step="any" min="0" placeholder="Precio de venta" required>-->
 
                   </div>
                 
@@ -434,9 +434,9 @@ MODAL EDITAR PRODUCTO
                 
                   <div class="input-group">
                   
-                    <span class="input-group-addon"><i class="fa fa-arrow-up"></i></span> 
+                    <!--<span class="input-group-addon"><i class="fa fa-arrow-up"></i></span> 
 
-                    <input type="number" class="form-control input-lg" id="editarPrecioC" name="editarPrecioC" step="any" min="0" required>
+                    <input type="number" class="form-control input-lg" id="editarPrecioC" name="editarPrecioC" step="any" min="0" required>-->
 
                   </div>
 
@@ -448,9 +448,9 @@ MODAL EDITAR PRODUCTO
                 
                   <div class="input-group">
                   
-                    <span class="input-group-addon"><i class="fa fa-arrow-down"></i></span> 
+                    <!--<span class="input-group-addon"><i class="fa fa-arrow-down"></i></span> 
 
-                    <input type="number" class="form-control input-lg" id="editarPrecioV" name="editarPrecioV" step="any" min="0" required>
+                    <input type="number" class="form-control input-lg" id="editarPrecioV" name="editarPrecioV" step="any" min="0" required>-->
 
                   </div>
                 

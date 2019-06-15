@@ -100,9 +100,9 @@ class ControladorProductos{
 							   //"codigo" => $_POST["nuevoCodigo"],
 							   "descripcion" => $_POST["nuevaDescripcion"],
 							   "tipoM" => $_POST["nuevaMedida"],
-							   "stock" => $_POST["nuevoStock"],
-							   "precio_compra" => $_POST["nuevoPrecioC"],
-							   "precio_venta" => $_POST["nuevoPrecioV"]);
+							   "stock" => $_POST["nuevoStock"]
+							   //"precio_compra" => $_POST["nuevoPrecioC"],
+							  /*"precio_venta" => $_POST["nuevoPrecioV"]*/);
 
 							   /*,
 							   "imagen" => $ruta)*/
@@ -164,9 +164,13 @@ class ControladorProductos{
 
 			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarDescripcion"]) &&
 				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarCategoria"]) &&
-			   preg_match('/^[0-9]+$/', $_POST["editarStock"]) &&	
+			   preg_match('/^[0-9]+$/', $_POST["editarStock"])){
+
+				/**
+				 &&	
 			   preg_match('/^[0-9.]+$/', $_POST["editarPrecioC"]) &&
-			   preg_match('/^[0-9.]+$/', $_POST["editarPrecioV"])){
+			   preg_match('/^[0-9.]+$/', $_POST["editarPrecioV"])
+				*/
 
 		   		/*=============================================
 				VALIDAR IMAGEN
@@ -255,8 +259,8 @@ class ControladorProductos{
 							   "descripcion" => $_POST["editarDescripcion"],
 							   "tipoM" => $_POST["editarMedida"],
 							   "stock" => $_POST["editarStock"],
-							   "precio_compra" => $_POST["editarPrecioC"],
-							   "precio_venta" => $_POST["editarPrecioV"],
+							   //"precio_compra" => $_POST["editarPrecioC"],
+							   //"precio_venta" => $_POST["editarPrecioV"],
 								"id" => $_POST["editarID"]);
 
 				$respuesta = ModeloProductos::mdlEditarProducto($tabla, $datos);
