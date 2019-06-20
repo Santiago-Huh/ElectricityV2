@@ -134,7 +134,7 @@
 
                   }else{
 
-                    echo '<td><img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail" width="40px"></td>';
+                    echo '<td><img src="vistas/img/luminarias/default/anonymous.png" class="img-thumbnail" width="40px"></td>';
 
                   }
 
@@ -178,7 +178,7 @@
   <div id="modalEditarRegistro" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
-          <form role="form" method="post">
+          <form role="form" method="post" enctype="multipart/form-data">
 
           <!--=====================================
           CABEZA DEL MODAL
@@ -468,7 +468,7 @@
                   </div>
         
                     <div class="input-group">
-                        <textarea rows="4" class="form-control input-lg" cols="50" id="editarObser" name="editarObser" placeholder="Observaciones" required></textarea>
+                        <textarea rows="4" class="form-control input-lg" cols="50" id="editarObser" name="editarObser" placeholder="Observaciones"></textarea>
                     </div>
 
                 </div>
@@ -476,10 +476,10 @@
                 <div class="row">
                   <div class="form-group">
                     <div class="panel">SUBIR FOTO</div>
-                    <input type="file" class="nuevaFoto" name="editarFoto">
+                    <input type="file" class="nuevaFotoLumi" name="editarFotoLumi">
                     <p class="help-block">Peso máximo de la foto 2MB</p>
                     <img src="vistas/img/luminarias/default/anonymous.png" class="img-thumbnail previsualizarEditar" width="100px">
-                    <input type="hidden" name="fotoActual" id="fotoActual">
+                    <input type="hidden" name="fotoActualLumi" id="fotoActualLumi">
                   </div>
                 </div>
 

@@ -1,7 +1,7 @@
 /*=============================================
 SUBIENDO LA FOTO DEL USUARIO
 =============================================*/
-$(".nuevaFoto").change(function(){
+$(".nuevaFotoLumi").change(function(){
 
 	var imagen = this.files[0];
 	
@@ -11,7 +11,7 @@ $(".nuevaFoto").change(function(){
 
   	if(imagen["type"] != "image/jpeg" && imagen["type"] != "image/png"){
 
-  		$(".nuevaFoto").val("");
+  		$(".nuevaFotoLumi").val("");
 
   		 swal({
 		      title: "Error al subir la imagen",
@@ -22,7 +22,7 @@ $(".nuevaFoto").change(function(){
 
   	}else if(imagen["size"] > 2000000){
 
-  		$(".nuevaFoto").val("");
+  		$(".nuevaFotoLumi").val("");
 
   		 swal({
 		      title: "Error al subir la imagen",
@@ -91,7 +91,7 @@ $(".tablas").on("click", ".btnEditarRegistro", function(){
 			$("#editarLumiN").val(respuesta["luminew"]);
 			$("#editarPotenciaN").val(respuesta["potencialuminew"]);
 			$("#editarObser").val(respuesta["observaciones"]);
-			$("#fotoActual").val(respuesta["foto"]);
+			$("#fotoActualLumi").val(respuesta["foto"]);
 
 			if(respuesta["foto"] != ""){
 

@@ -26,17 +26,17 @@ class ControladorRegistro{
 		if (isset($_POST["lumina"])){
 			
 			if (preg_match('/^[0-9]+$/', $_POST["lumina"])&&
-				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nomPro"])) {
+				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["luminarianueva"])) {
 
 				/*=============================================
 				VALIDAR IMAGEN
 				=============================================*/
 
-				$ruta = "";
+				$ruta = " ";
 
-				if(isset($_FILES["nuevaFoto"]["tmp_name"])){
+				if(isset($_FILES["nuevaFotoLumi"]["tmp_name"])){
 
-					list($ancho, $alto) = getimagesize($_FILES["nuevaFoto"]["tmp_name"]);
+					list($ancho, $alto) = getimagesize($_FILES["nuevaFotoLumi"]["tmp_name"]);
 
 					$nuevoAncho = 500;
 					$nuevoAlto = 500;
@@ -45,7 +45,7 @@ class ControladorRegistro{
 					CREAMOS EL DIRECTORIO DONDE VAMOS A GUARDAR LA FOTO DEL USUARIO
 					=============================================*/
 
-					$directorio = "vistas/img/luminarias/".$_POST["nomPro"];
+					$directorio = "vistas/img/luminarias/".$_POST["luminarianueva"];
 
 					mkdir($directorio, 0755);
 
@@ -53,7 +53,7 @@ class ControladorRegistro{
 					DE ACUERDO AL TIPO DE IMAGEN APLICAMOS LAS FUNCIONES POR DEFECTO DE PHP
 					=============================================*/
 
-					if($_FILES["nuevaFoto"]["type"] == "image/jpeg"){
+					if($_FILES["nuevaFotoLumi"]["type"] == "image/jpeg"){
 
 						/*=============================================
 						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
@@ -61,9 +61,9 @@ class ControladorRegistro{
 
 						$aleatorio = mt_rand(100,999);
 
-						$ruta = "vistas/img/luminarias/".$_POST["nomPro"]."/".$aleatorio.".jpg";
+						$ruta = "vistas/img/luminarias/".$_POST["luminarianueva"]."/".$aleatorio.".jpg";
 
-						$origen = imagecreatefromjpeg($_FILES["nuevaFoto"]["tmp_name"]);						
+						$origen = imagecreatefromjpeg($_FILES["nuevaFotoLumi"]["tmp_name"]);						
 
 						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
@@ -73,7 +73,7 @@ class ControladorRegistro{
 
 					}
 
-					if($_FILES["nuevaFoto"]["type"] == "image/png"){
+					if($_FILES["nuevaFotoLumi"]["type"] == "image/png"){
 
 						/*=============================================
 						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
@@ -81,9 +81,9 @@ class ControladorRegistro{
 
 						$aleatorio = mt_rand(100,999);
 
-						$ruta = "vistas/img/luminarias/".$_POST["nomPro"]."/".$aleatorio.".png";
+						$ruta = "vistas/img/luminarias/".$_POST["luminarianueva"]."/".$aleatorio.".png";
 
-						$origen = imagecreatefrompng($_FILES["nuevaFoto"]["tmp_name"]);						
+						$origen = imagecreatefrompng($_FILES["nuevaFotoLumi"]["tmp_name"]);						
 
 						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
@@ -285,11 +285,11 @@ class ControladorRegistro{
 				VALIDAR IMAGEN
 				=============================================*/
 
-				$ruta = $_POST["fotoActual"];
+				$ruta = $_POST["fotoActualLumi"];
 
-				if(isset($_FILES["editarFoto"]["tmp_name"]) && !empty($_FILES["editarFoto"]["tmp_name"])){
+				if(isset($_FILES["editarFotoLumi"]["tmp_name"]) && !empty($_FILES["editarFotoLumi"]["tmp_name"])){
 
-					list($ancho, $alto) = getimagesize($_FILES["editarFoto"]["tmp_name"]);
+					list($ancho, $alto) = getimagesize($_FILES["editarFotoLumi"]["tmp_name"]);
 
 					$nuevoAncho = 500;
 					$nuevoAlto = 500;
@@ -298,15 +298,15 @@ class ControladorRegistro{
 					CREAMOS EL DIRECTORIO DONDE VAMOS A GUARDAR LA FOTO DEL USUARIO
 					=============================================*/
 
-					$directorio = "vistas/img/usuarios/".$_POST["nomP"];
+					$directorio = "vistas/img/luminarias/".$_POST["editarLumiN"];
 
 					/*=============================================
 					PRIMERO PREGUNTAMOS SI EXISTE OTRA IMAGEN EN LA BD
 					=============================================*/
 
-					if(!empty($_POST["fotoActual"])){
+					if(!empty($_POST["fotoActualLumi"])){
 
-						unlink($_POST["fotoActual"]);
+						unlink($_POST["fotoActualLumi"]);
 
 					}else{
 
@@ -318,7 +318,7 @@ class ControladorRegistro{
 					DE ACUERDO AL TIPO DE IMAGEN APLICAMOS LAS FUNCIONES POR DEFECTO DE PHP
 					=============================================*/
 
-					if($_FILES["editarFoto"]["type"] == "image/jpeg"){
+					if($_FILES["editarFotoLumi"]["type"] == "image/jpeg"){
 
 						/*=============================================
 						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
@@ -326,9 +326,9 @@ class ControladorRegistro{
 
 						$aleatorio = mt_rand(100,999);
 
-						$ruta = "vistas/img/luminarias/".$_POST["nomP"]."/".$aleatorio.".jpg";
+						$ruta = "vistas/img/luminarias/".$_POST["editarLumiN"]."/".$aleatorio.".jpg";
 
-						$origen = imagecreatefromjpeg($_FILES["editarFoto"]["tmp_name"]);						
+						$origen = imagecreatefromjpeg($_FILES["editarFotoLumi"]["tmp_name"]);						
 
 						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
@@ -338,7 +338,7 @@ class ControladorRegistro{
 
 					}
 
-					if($_FILES["editarFoto"]["type"] == "image/png"){
+					if($_FILES["editarFotoLumi"]["type"] == "image/png"){
 
 						/*=============================================
 						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
@@ -346,9 +346,9 @@ class ControladorRegistro{
 
 						$aleatorio = mt_rand(100,999);
 
-						$ruta = "vistas/img/luminarias/".$_POST["nomP"]."/".$aleatorio.".png";
+						$ruta = "vistas/img/luminarias/".$_POST["editarLumiN"]."/".$aleatorio.".png";
 
-						$origen = imagecreatefrompng($_FILES["editarFoto"]["tmp_name"]);						
+						$origen = imagecreatefrompng($_FILES["editarFotoLumi"]["tmp_name"]);						
 
 						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 

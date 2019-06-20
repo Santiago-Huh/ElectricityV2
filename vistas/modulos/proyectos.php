@@ -708,7 +708,7 @@ MODAL EDITAR CLIENTE
   <div id="modalAgregarRegistro" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
-          <form role="form" method="post">
+          <form role="form" method="post" enctype="multipart/form-data">
 
           <!--=====================================
           CABEZA DEL MODAL
@@ -995,7 +995,7 @@ MODAL EDITAR CLIENTE
                 <div class="row">
                   <div class="form-group">
                     <div class="panel">SUBIR FOTO</div>
-                    <input type="file" class="nuevaFoto" name="nuevaFoto">
+                    <input type="file" class="nuevaFotoLumi" name="nuevaFotoLumi">
                     <p class="help-block">Peso máximo de la foto 2MB</p>
                     <img src="vistas/img/luminarias/default/anonymous.png" class="img-thumbnail previsualizar" width="100px">
                   </div>

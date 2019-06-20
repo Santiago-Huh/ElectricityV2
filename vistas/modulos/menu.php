@@ -207,7 +207,7 @@
 
 					</li>';
 
-					if($_SESSION["perfil"] == "Administrador"){
+					/*if($_SESSION["perfil"] == "Administrador"){
 
 					echo '<li>
 
@@ -220,7 +220,7 @@
 
 					</li>';
 
-					}
+					}*/
 
 				
 

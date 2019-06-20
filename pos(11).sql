@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-06-2019 a las 21:49:16
+-- Tiempo de generación: 20-06-2019 a las 23:55:11
 -- Versión del servidor: 10.1.39-MariaDB
 -- Versión de PHP: 7.3.5
 
@@ -50,7 +50,7 @@ CREATE TABLE `categorias` (
 --
 
 INSERT INTO `categorias` (`id`, `categoria`, `clientep`, `lugar`, `fechaI`, `fechaF`, `trabR`, `marcaL`, `descripM`, `cantL`, `tipoV`, `consider`, `obvser`, `fecha`) VALUES
-(2, 'Bruso', 'Antonio', 'Playa del Carmen', '2019-06-01', '2019-06-14', 'Nada especifico', 'Solis', 'Nuevo y barato', 233, 'Relieve poco amigable', 'Poco espacio de construcción', 'Baches muy graves', '2019-06-08 00:38:04');
+(2, 'Malecón', 'Antonio', 'Playa del Carmen', '2019-06-01', '2019-06-14', 'Nada especifico', 'Solis', 'Nuevo y barato', 233, 'Relieve poco amigable', 'Poco espacio de construcción', 'Baches muy graves', '2019-06-20 21:53:54');
 
 --
 -- Disparadores `categorias`
@@ -63,6 +63,30 @@ CREATE TRIGGER `borrarRegistros` AFTER DELETE ON `categorias` FOR EACH ROW BEGIN
      DELETE
      	FROM registro
         WHERE registro.idProyect = old.id;
+     DELETE
+     	FROM progreso
+        WHERE progreso.idProyec = old.id;
+  END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `updateNombres` AFTER UPDATE ON `categorias` FOR EACH ROW BEGIN  
+    UPDATE
+    	productos, categorias
+        SET productos.nomProyecto = new.categoria
+        WHERE productos.id_categoria = categorias.id;
+    UPDATE
+    	progreso, categorias
+        SET progreso.nomPro = new.categoria
+        WHERE progreso.idProyec = categorias.id;
+    UPDATE
+    	registro, categorias
+        SET registro.nomProyect = new.categoria
+        WHERE registro.idProyect = categorias.id;
+    UPDATE
+    	proyectos, categorias
+        SET proyectos.nomP = new.categoria
+        WHERE proyectos.idCate = categorias.id;
   END
 $$
 DELIMITER ;
@@ -193,8 +217,8 @@ INSERT INTO `productos` (`id`, `id_categoria`, `nomProyecto`, `codigo`, `descrip
 (79, '11', '', '1107', 'Hierro', '', 'vistas/img/productos/default/anonymous.png', 390, 200, 280, 10, '2019-05-13 06:43:55'),
 (80, '14', '', '1403', 'Cobre mts', '', 'vistas/img/productos/default/anonymous.png', 300, 1000, 1400, 0, '2019-06-14 19:45:46'),
 (81, '13', '', '1303', 'Cable de luz mts', 'Metros', 'vistas/img/productos/default/anonymous.png', 975, 10000, 20000, 25, '2019-06-14 19:45:46'),
-(82, '2', '', '1601', 'Cable reforzado', 'Metros', '', 329, 33, 46.2, 4, '2019-06-14 19:42:31'),
-(83, '2', 'Bruso', '', 'Fibra Optica', 'mts', '', 208, 2, 2, 15, '2019-06-14 19:48:04');
+(82, '2', 'Malecón', '1601', 'Cable reforzado', 'Metros', '', 328, 33, 46.2, 5, '2019-06-20 21:53:54'),
+(83, '2', 'Malecón', '', 'Fibra Optica', 'mts', '', 207, 2, 2, 16, '2019-06-20 21:53:54');
 
 -- --------------------------------------------------------
 
@@ -218,7 +242,7 @@ CREATE TABLE `progreso` (
 --
 
 INSERT INTO `progreso` (`idPro`, `idProyec`, `nomPro`, `cliente`, `user`, `descripM`, `cantidadMP`, `fecha`) VALUES
-(3, 2, 'Bruso', 'Julian Villegas', 'Jorge', '[{\"id\":\"83\",\"descripcion\":\"Fibra Optica\",\"cantidad\":\"2\",\"stock\":\"207\",\"idProyect\":\"2\",\"proyecto\":\"Bruso\"}]', 2, '0000-00-00');
+(3, 2, 'Malecón', 'Antonio', 'Jorge', '[{\"id\":\"83\",\"descripcion\":\"Fibra Optica\",\"tmedida\":\"mts\",\"cantidad\":\"2\",\"stock\":\"207\",\"idProyect\":\"2\",\"proyecto\":\"Bruso\"}]', 2, '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -252,7 +276,7 @@ CREATE TABLE `proyectos` (
 --
 
 INSERT INTO `proyectos` (`idP`, `idCate`, `nomP`, `lugar`, `comV`, `comOP`, `sysC`, `sysS`, `weeks`, `aliPD`, `costoH`, `costoP`, `cashET`, `cashE`, `costoT`, `costoS`, `costoD`, `observacion`) VALUES
-(2, 2, 'Bruso', 'Playa del Carmen', 6928, 25000, 12500, 15000, 2, 1250, 900, 18750, 45000, 3000, 128328, 64164, 8555, 'Ninguno');
+(2, 2, 'Malecón', 'Playa del Carmen', 6928, 25000, 12500, 15000, 2, 1250, 900, 18750, 45000, 3000, 128328, 64164, 8555, 'Ninguno');
 
 -- --------------------------------------------------------
 
@@ -283,15 +307,21 @@ CREATE TABLE `registro` (
   `instalador` varchar(100) NOT NULL,
   `tipoP` varchar(50) NOT NULL,
   `modeloLE` varchar(255) NOT NULL,
-  `potenciaLE` text NOT NULL
+  `potenciaLE` text NOT NULL,
+  `luminew` varchar(250) NOT NULL,
+  `potencialuminew` varchar(255) NOT NULL,
+  `observaciones` varchar(250) NOT NULL,
+  `foto` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `registro`
 --
 
-INSERT INTO `registro` (`idR`, `idProyect`, `nomProyect`, `lumi`, `luminId`, `rpu`, `col`, `calle`, `alP`, `tipoVi`, `ubiP`, `disIn`, `carriles`, `co`, `estaC`, `alimen`, `lumiAR`, `latitud`, `longitud`, `instalador`, `tipoP`, `modeloLE`, `potenciaLE`) VALUES
-(1, 2, 'Bruso', 2, 21, '222', 'Ejidal', '3', 11, 'Secundaria', 'Andador', 11, 2, 123, 'ON', 'Subterránea', 'Ninguno', '11,22', '22,11', 'Antonio', 'Concreto', 'Solis S.A. de C.V.', '22');
+INSERT INTO `registro` (`idR`, `idProyect`, `nomProyect`, `lumi`, `luminId`, `rpu`, `col`, `calle`, `alP`, `tipoVi`, `ubiP`, `disIn`, `carriles`, `co`, `estaC`, `alimen`, `lumiAR`, `latitud`, `longitud`, `instalador`, `tipoP`, `modeloLE`, `potenciaLE`, `luminew`, `potencialuminew`, `observaciones`, `foto`) VALUES
+(1, 2, 'Malecón', 2, 21, '222', 'Ejidal', '3', 11, 'Secundaria', 'Andador', 11, 2, 123, 'ON', 'Subterránea', 'Ninguno', '11,22', '22,11', 'Antonio', 'Concreto', 'Solis S.A. de C.V.', '22', 'Sep', '233', 'XD', 'vistas/img/luminarias/Puente/656.jpg'),
+(7, 2, 'Malecón', 2, 21, '222', 'Ejidal', '2', 22, 'Primaria', 'Camellon', 22, 3, 2, 'ON', 'Subterránea', 'Cerca de transformador', '11,22', '22,11', 'Antonio', 'Concreto', 'Solis S.A. de C.V.', '22', 'Solis', '233', 'xd', 'vistas/img/luminarias/Puente/242.jpg'),
+(8, 2, 'Malecón', 2, 23333, '222', 'Ejidal', '2', 22, 'Secundaria', 'Andador', 22, 2, 222, 'ON', 'Área', 'Ninguno', '11,22', '22,11', 'Antonio', 'Concreto', 'Solis S.A. de C.V.', '22', 'Solis', '233', 'Sapo', 'vistas/img/luminarias/Solis/194.jpg');
 
 -- --------------------------------------------------------
 
@@ -318,8 +348,8 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`id`, `nombre`, `usuario`, `password`, `perfil`, `foto`, `estado`, `ultimo_login`, `fecha`) VALUES
 (1, 'Administrador', 'admin', '$2a$07$asxx54ahjppf45sd87a5auXBm1Vr2M1NV5t/zNQtGHGpS5fFirrbG', 'Administrador', 'vistas/img/usuarios/admin/191.jpg', 1, '2019-04-13 19:49:37', '2019-04-14 00:49:37'),
 (61, 'febo', 'febosadi', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'Administrador', '', 1, '2019-04-20 17:55:26', '2019-04-20 22:55:26'),
-(62, 'Jorge', 'jorge1', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'Administrador', '', 1, '2019-06-13 15:40:55', '2019-06-13 20:40:55'),
-(65, 'Santiago', 'Santi', '$2a$07$asxx54ahjppf45sd87a5autBMYI.dcfixEKwywxOvVu.ijNpIuH7i', 'Administrador', 'vistas/img/usuarios/Santi/466.jpg', 1, '2019-05-28 16:15:49', '2019-05-28 21:15:49');
+(62, 'Jorge', 'jorge1', '$2a$07$asxx54ahjppf45sd87a5auGZEtGHuyZwm.Ur.FJvWLCql3nmsMbXy', 'Administrador', '', 1, '2019-06-20 15:47:29', '2019-06-20 20:47:29'),
+(65, 'Santiago', 'Santi', '$2a$07$asxx54ahjppf45sd87a5autBMYI.dcfixEKwywxOvVu.ijNpIuH7i', 'Administrador', 'vistas/img/usuarios/Santi/234.png', 1, '2019-05-28 16:15:49', '2019-06-20 03:33:00');
 
 -- --------------------------------------------------------
 
@@ -449,7 +479,7 @@ ALTER TABLE `productos`
 -- AUTO_INCREMENT de la tabla `progreso`
 --
 ALTER TABLE `progreso`
-  MODIFY `idPro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idPro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `proyectos`
@@ -461,7 +491,7 @@ ALTER TABLE `proyectos`
 -- AUTO_INCREMENT de la tabla `registro`
 --
 ALTER TABLE `registro`
-  MODIFY `idR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
