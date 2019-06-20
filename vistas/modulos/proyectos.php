@@ -967,6 +967,40 @@ MODAL EDITAR CLIENTE
                   </div>
                 </div>
 
+              <br>
+              <hr>
+              <br>
+
+                <div class="row">
+                  <div class="col-lg-4">
+                      <div class="form-group">
+                          <label>Luminaria Nueva</label>
+                          <input class="form-control" type="text" id="luminarianueva" name="luminarianueva">
+                      </div>
+                  </div>
+
+                  <div class="col-lg-4">
+                      <div class="form-group">
+                          <label>Potencia de Luminaria Nueva (W)</label>
+                          <input class="form-control" type="text" id="potencianueva" name="potencianueva">
+                      </div>
+                  </div>
+        
+                    <div class="input-group">
+                        <textarea rows="4" class="form-control input-lg" cols="50" name="Observ" placeholder="Observaciones" required></textarea>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                  <div class="form-group">
+                    <div class="panel">SUBIR FOTO</div>
+                    <input type="file" class="nuevaFoto" name="nuevaFoto">
+                    <p class="help-block">Peso máximo de la foto 2MB</p>
+                    <img src="vistas/img/luminarias/default/anonymous.png" class="img-thumbnail previsualizar" width="100px">
+                  </div>
+                </div>
+
             </div>
           </div>
 

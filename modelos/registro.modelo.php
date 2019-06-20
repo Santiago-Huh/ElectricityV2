@@ -41,7 +41,7 @@ class ModeloRegistro{
 	=============================================*/
 
 	static public function mdlIngresarRegistro($tabla, $datos){
-		$stmt = conexion::conectar()->prepare("INSERT INTO $tabla(idProyect, nomProyect, lumi, luminId, rpu, col, calle, alP, tipoVi, ubiP, disIn, carriles, co, estaC, alimen, lumiAR, latitud, longitud, instalador, tipoP, modeloLE, potenciaLE) VALUES(:idProyect, :nomProyect, :lumi, :luminId, :rpu, :col, :calle, :alP, :tipoVi, :ubiP, :disIn, :carriles, :co, :estaC, :alimen, :lumiAR, :latitud, :longitud, :instalador, :tipoP, :modeloLE, :potenciaLE)");
+		$stmt = conexion::conectar()->prepare("INSERT INTO $tabla(idProyect, nomProyect, lumi, luminId, rpu, col, calle, alP, tipoVi, ubiP, disIn, carriles, co, estaC, alimen, lumiAR, latitud, longitud, instalador, tipoP, modeloLE, potenciaLE, luminew, potencialuminew, observaciones, foto) VALUES(:idProyect, :nomProyect, :lumi, :luminId, :rpu, :col, :calle, :alP, :tipoVi, :ubiP, :disIn, :carriles, :co, :estaC, :alimen, :lumiAR, :latitud, :longitud, :instalador, :tipoP, :modeloLE, :potenciaLE, :luminew, :potencialuminew, :observaciones, :foto)");
 
 		$stmt->bindParam(":idProyect", $datos["idProyect"], PDO::PARAM_STR);
 		$stmt->bindParam(":nomProyect", $datos["nomProyect"], PDO::PARAM_STR);
@@ -65,6 +65,10 @@ class ModeloRegistro{
 		$stmt->bindParam(":tipoP", $datos["tipoP"], PDO::PARAM_STR);
 		$stmt->bindParam(":modeloLE", $datos["modeloLE"], PDO::PARAM_STR);
 		$stmt->bindParam(":potenciaLE", $datos["potenciaLE"], PDO::PARAM_STR);
+		$stmt->bindParam(":luminew", $datos["luminew"], PDO::PARAM_STR);
+		$stmt->bindParam(":potencialuminew", $datos["potencialuminew"], PDO::PARAM_STR);
+		$stmt->bindParam(":observaciones", $datos["observaciones"], PDO::PARAM_STR);
+		$stmt->bindParam(":foto", $datos["foto"], PDO::PARAM_STR);
 
 		if ($stmt->execute()) {
 			
@@ -112,7 +116,7 @@ class ModeloRegistro{
 
 	static public function mdlEditarRegistro($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET idProyect = :idProyect, nomProyect = :nomProyect, lumi = :lumi, luminId = :luminId, rpu = :rpu, col = :col, calle = :calle, alP = :alP, tipoVi = :tipoVi, ubiP = :ubiP, disIn = :disIn, carriles = :carriles, co = :co, estaC = :estaC, alimen = :alimen, lumiAR = :lumiAR, latitud = :latitud, longitud = :longitud, instalador = :instalador, tipoP = :tipoP, modeloLE = :modeloLE, potenciaLE = :potenciaLE WHERE idR = :idR");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET idProyect = :idProyect, nomProyect = :nomProyect, lumi = :lumi, luminId = :luminId, rpu = :rpu, col = :col, calle = :calle, alP = :alP, tipoVi = :tipoVi, ubiP = :ubiP, disIn = :disIn, carriles = :carriles, co = :co, estaC = :estaC, alimen = :alimen, lumiAR = :lumiAR, latitud = :latitud, longitud = :longitud, instalador = :instalador, tipoP = :tipoP, modeloLE = :modeloLE, potenciaLE = :potenciaLE, luminew = :luminew, potencialuminew = :potencialuminew, observaciones = :observaciones, foto = :foto WHERE idR = :idR");
 
 		$stmt->bindParam(":nomProyect", $datos["nomProyect"], PDO::PARAM_STR);
 		$stmt->bindParam(":lumi", $datos["lumi"], PDO::PARAM_STR);
@@ -135,6 +139,10 @@ class ModeloRegistro{
 		$stmt->bindParam(":tipoP", $datos["tipoP"], PDO::PARAM_STR);
 		$stmt->bindParam(":modeloLE", $datos["modeloLE"], PDO::PARAM_STR);
 		$stmt->bindParam(":potenciaLE", $datos["potenciaLE"], PDO::PARAM_STR);
+		$stmt->bindParam(":luminew", $datos["luminew"], PDO::PARAM_STR);
+		$stmt->bindParam(":potencialuminew", $datos["potencialuminew"], PDO::PARAM_STR);
+		$stmt->bindParam(":observaciones", $datos["observaciones"], PDO::PARAM_STR);
+		$stmt->bindParam(":foto", $datos["foto"], PDO::PARAM_STR);
 		$stmt->bindParam(":idProyect", $datos["idProyect"], PDO::PARAM_INT);
 		$stmt->bindParam(":idR", $datos["idR"], PDO::PARAM_INT);
 

@@ -154,6 +154,7 @@ CUERPO DOCUMENTO
 
       if($_GET["ruta"] == "inicio" ||
          $_GET["ruta"] == "usuarios" ||
+         $_GET["ruta"] == "luminarias" ||
          $_GET["ruta"] == "materiales" ||
          $_GET["ruta"] == "proyectos" ||
          $_GET["ruta"] == "factibilidad" ||
@@ -172,6 +173,7 @@ CUERPO DOCUMENTO
          $_GET["ruta"] == "crear-venta" ||
          $_GET["ruta"] == "editar-venta" ||
          $_GET["ruta"] == "editar-progreso" ||
+         $_GET["ruta"] == "ver-progreso" ||
          $_GET["ruta"] == "reportes" ||
          $_GET["ruta"] == "salir"){
 

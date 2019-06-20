@@ -78,6 +78,10 @@
              <th>Tipo Poste</th>
              <th>Modelo Luminaria</th>
              <th>Potencia Luminaria</th>
+             <th>Luminaria Nueva</th>
+             <th>Potencia Nueva</th>
+             <th>Observaciones</th>
+             <th>Foto</th>
              <th>Acciones</th>
 
            </tr> 
@@ -120,8 +124,21 @@
             <td class="text-uppercase">'.$value["tipoP"].'</td>
             <td class="text-uppercase">'.$value["modeloLE"].'</td>
             <td class="text-uppercase">'.$value["potenciaLE"].'</td>
+            <td class="text-uppercase">'.$value["luminew"].'</td>
+            <td class="text-uppercase">'.$value["potencialuminew"].'</td>
+            <td class="text-uppercase">'.$value["observaciones"].'</td>';
 
-            <td>
+            if($value["foto"] != ""){
+
+                    echo '<td><img src="'.$value["foto"].'" class="img-thumbnail" width="40px"></td>';
+
+                  }else{
+
+                    echo '<td><img src="vistas/img/usuarios/default/anonymous.png" class="img-thumbnail" width="40px"></td>';
+
+                  }
+
+            echo '<td>
 
             <div class="btn-group">
 
@@ -428,6 +445,41 @@
                           <label>Potencia de luminaria existente (W)</label>
                           <input class="form-control" type="text" placeholder="Potencia de luminaria existente" id="editarPotencia" name="editarPotencia">
                       </div>
+                  </div>
+                </div>
+
+              <br>
+              <hr>
+              <br>
+
+                <div class="row">
+                  <div class="col-lg-4">
+                      <div class="form-group">
+                          <label>Luminaria Nueva</label>
+                          <input class="form-control" type="text" id="editarLumiN" name="editarLumiN">
+                      </div>
+                  </div>
+
+                  <div class="col-lg-4">
+                      <div class="form-group">
+                          <label>Potencia de Luminaria Nueva (W)</label>
+                          <input class="form-control" type="text" id="editarPotenciaN" name="editarPotenciaN">
+                      </div>
+                  </div>
+        
+                    <div class="input-group">
+                        <textarea rows="4" class="form-control input-lg" cols="50" id="editarObser" name="editarObser" placeholder="Observaciones" required></textarea>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                  <div class="form-group">
+                    <div class="panel">SUBIR FOTO</div>
+                    <input type="file" class="nuevaFoto" name="editarFoto">
+                    <p class="help-block">Peso máximo de la foto 2MB</p>
+                    <img src="vistas/img/luminarias/default/anonymous.png" class="img-thumbnail previsualizarEditar" width="100px">
+                    <input type="hidden" name="fotoActual" id="fotoActual">
                   </div>
                 </div>
 

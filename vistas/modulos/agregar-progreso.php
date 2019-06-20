@@ -315,6 +315,7 @@ if($_SESSION["perfil"] == "Especial"){
                   <!--<th>Código</th>-->
                   <th>Proyecto</th>
                   <th>Descripcion</th>
+                  <th>Tipo de Medida</th>
                   <th>Material restante</th>
                   <th>Acciones</th>
                 </tr>

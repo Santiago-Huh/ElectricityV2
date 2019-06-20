@@ -78,6 +78,7 @@ class TablaProductosVentas{
 				  "'.($i+1).'",
 				  "'.$productos[$i]["nomProyecto"].'",
 			      "'.$productos[$i]["descripcion"].'",
+			      "'.$productos[$i]["tipoM"].'",
 			      "'.$stock.'",
 			      "'.$botones.'"
 			    ],';
