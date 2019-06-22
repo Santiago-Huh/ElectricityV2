@@ -708,7 +708,7 @@ MODAL EDITAR CLIENTE
   <div id="modalAgregarRegistro" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
-          <form role="form" method="post">
+          <form role="form" method="post" enctype="multipart/form-data">
 
           <!--=====================================
           CABEZA DEL MODAL
@@ -964,6 +964,40 @@ MODAL EDITAR CLIENTE
                           <label>Potencia de luminaria existente (W)</label>
                           <input class="form-control" type="text" placeholder="Potencia de luminaria existente" id="potencialuminaria" name="potencialuminaria">
                       </div>
+                  </div>
+                </div>
+
+              <br>
+              <hr>
+              <br>
+
+                <div class="row">
+                  <div class="col-lg-4">
+                      <div class="form-group">
+                          <label>Luminaria Nueva</label>
+                          <input class="form-control" type="text" id="luminarianueva" name="luminarianueva">
+                      </div>
+                  </div>
+
+                  <div class="col-lg-4">
+                      <div class="form-group">
+                          <label>Potencia de Luminaria Nueva (W)</label>
+                          <input class="form-control" type="text" id="potencianueva" name="potencianueva">
+                      </div>
+                  </div>
+        
+                    <div class="input-group">
+                        <textarea rows="4" class="form-control input-lg" cols="50" name="Observ" placeholder="Observaciones" required></textarea>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                  <div class="form-group">
+                    <div class="panel">SUBIR FOTO</div>
+                    <input type="file" class="nuevaFotoLumi" name="nuevaFotoLumi">
+                    <p class="help-block">Peso máximo de la foto 2MB</p>
+                    <img src="vistas/img/luminarias/default/anonymous.png" class="img-thumbnail previsualizar" width="100px">
                   </div>
                 </div>
 

@@ -122,7 +122,7 @@
                     
                     <span class="input-group-addon"><i class="fa fa-users"></i></span>
                     
-                    <select class="form-control" id="seleccionarCliente" name="seleccionarCliente" required>
+                    <select class="form-control" id="seleccionarCliente" name="seleccionarCliente" required disabled="readonly">
 
                     <!--<option value="<?php //echo $progreso["cliente"]; ?>"><?php //echo $progreso["cliente"]; ?></option>-->
 
@@ -178,25 +178,26 @@
             
                           <div class="input-group">
                 
-                            <span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs quitarProducto" idProducto="'.$value["id"].'"><i class="fa fa-times"></i></button></span>
+                            <!--<span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs quitarProducto" idProducto="'.$value["id"].'"><i class="fa fa-times"></i></button></span>-->
 
                             <input type="text" class="form-control nuevaDescripcionProducto" idProducto="'.$value["id"].'" name="agregarProducto" value="'.$value["descripcion"].'" readonly required>
+
+                            <input type="text" class="form-control nuevaMedida" idProducto="'.$value["tmedida"].'" name="agregarID" value="'.$value["tmedida"].'"readonly required>
+
                           </div>
 
-                            <input type="text" class="form-control nuevaMedida" nuevaMedida="'.$value["tmedida"].'" name="nuevaMedida" value="'.$value["tmedida"].'" readonly required>
+                        </div>
+
+                        <div class="col-xs-3">
+              
+                          <input type="text" class="form-control agregarProyecto" name="agregarProyecto" min="1" value="'.$progreso["nomPro"].'" agregarProyecto="'.$progreso["nomPro"].'" readonly>
+                          <input type="hidden" class="form-control agregarID" idProducto="'.$progreso["idProyec"].'" name="agregarID" value="'.$progreso["idProyec"].'"readonly required>
 
                         </div>
 
                         <div class="col-xs-3">
               
-                          <input type="text" class="form-control agregarProyecto" name="agregarProyecto" min="1" value="'.$value["proyecto"].'" agregarProyecto="'.$value["proyecto"].'" readonly>
-                          <input type="hidden" class="form-control agregarID" idProducto="'.$value["idProyect"].'" name="agregarID" value="'.$value["idProyect"].'"readonly required>
-
-                        </div>
-
-                        <div class="col-xs-3">
-              
-                          <input type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="'.$value["cantidad"].'" stock="'.$stockAntiguo.'" nuevoStock="'.$value["stock"].'" required>
+                          <input type="number" class="form-control nuevaCantidadProducto" name="nuevaCantidadProducto" min="1" value="'.$value["cantidad"].'" stock="'.$stockAntiguo.'" nuevoStock="'.$value["stock"].'" required readonly>
 
                         </div>
 
@@ -329,19 +330,12 @@
 
           <div class="box-footer">
 
-            <button type="submit" class="btn btn-primary pull-right">Guardar cambios</button>
-            <!--<button class="btn btn-secondary pull-left btnRegresarHistorial">Cancelar</button>-->
+            <!--<button type="button" class="btn btn-primary btnRegresarHistorial pull-right">Regresar</button>
+            <button class="btn btn-secondary pull-left btnRegresarHistorial">Cancelar</button>-->
 
           </div>
 
         </form>
-
-        <?php
-
-          $editarProgreso = new ControladorProgreso();
-          $editarProgreso -> ctrEditarProgreso();
-          
-        ?>
 
         </div>
             
@@ -370,7 +364,7 @@
                   <th>Descripcion</th>
                   <th>Tipo de medida</th>
                   <th>Material Disponible</th>
-                  <th>Acciones</th>
+                  
                 </tr>
 
               </thead>

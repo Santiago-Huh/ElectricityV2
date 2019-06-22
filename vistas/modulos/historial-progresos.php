@@ -74,7 +74,7 @@ if($_SESSION["perfil"] == "Especial"){
            <th>Cliente</th>
            <th>Usuario</th>
            <!--<th>Descripción del material</th>-->
-           <th>Cantidad de material agregado</th>
+           <!--<th>Cantidad de material agregado</th>-->
            <!--<th>Total</th>
            <th>Fecha</th>-->
            <th>Acciones</th>
@@ -174,14 +174,16 @@ if($_SESSION["perfil"] == "Especial"){
                       <td class="text-uppercase">'.$value["cliente"].'</td>
                       <td class="text-uppercase">'.$value["user"].'</td>
                       <!--<td class="text-uppercase"></td>-->
-                      <td class="text-uppercase">'.$value["cantidadMP"].'</td>
+                      <!--<td class="text-uppercase">'.$value["cantidadMP"].'</td>-->
                       <!--<td class="text-uppercase"></td>-->
 
                       <td>
 
                         <div class="btn-group">
                             
-                        <button class="btn btn-warning btnEditarProgreso" idProgreso="'.$value["idPro"].'"><i class="fa fa-pencil"></i></button>';
+                        <button class="btn btn-warning btnEditarProgreso" idProgreso="'.$value["idPro"].'"><i class="fa fa-pencil"></i></button>
+
+                        <button class="btn btn-success btnVerProgreso" idProgreso="'.$value["idPro"].'"><i class="fa fa-eye"></i></button>';
 
                           if($_SESSION["perfil"] == "Administrador"){
 

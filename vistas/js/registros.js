@@ -1,4 +1,53 @@
 /*=============================================
+SUBIENDO LA FOTO DEL USUARIO
+=============================================*/
+$(".nuevaFotoLumi").change(function(){
+
+	var imagen = this.files[0];
+	
+	/*=============================================
+  	VALIDAMOS EL FORMATO DE LA IMAGEN SEA JPG O PNG
+  	=============================================*/
+
+  	if(imagen["type"] != "image/jpeg" && imagen["type"] != "image/png"){
+
+  		$(".nuevaFotoLumi").val("");
+
+  		 swal({
+		      title: "Error al subir la imagen",
+		      text: "¡La imagen debe estar en formato JPG o PNG!",
+		      type: "error",
+		      confirmButtonText: "¡Cerrar!"
+		    });
+
+  	}else if(imagen["size"] > 2000000){
+
+  		$(".nuevaFotoLumi").val("");
+
+  		 swal({
+		      title: "Error al subir la imagen",
+		      text: "¡La imagen no debe pesar más de 2MB!",
+		      type: "error",
+		      confirmButtonText: "¡Cerrar!"
+		    });
+
+  	}else{
+
+  		var datosImagen = new FileReader;
+  		datosImagen.readAsDataURL(imagen);
+
+  		$(datosImagen).on("load", function(event){
+
+  			var rutaImagen = event.target.result;
+
+  			$(".previsualizar").attr("src", rutaImagen);
+
+  		})
+
+  	}
+})
+
+/*=============================================
 EDITAR CENSO
 =============================================*/
 $(".tablas").on("click", ".btnEditarRegistro", function(){
@@ -39,6 +88,21 @@ $(".tablas").on("click", ".btnEditarRegistro", function(){
 			$("#editarTipoP").val(respuesta["tipoP"]);
 			$("#editarLumiE").val(respuesta["modeloLE"]);
 			$("#editarPotencia").val(respuesta["potenciaLE"]);
+			$("#editarLumiN").val(respuesta["luminew"]);
+			$("#editarPotenciaN").val(respuesta["potencialuminew"]);
+			$("#editarObser").val(respuesta["observaciones"]);
+			$("#fotoActualLumi").val(respuesta["foto"]);
+
+			if(respuesta["foto"] != ""){
+
+				$(".previsualizarEditar").attr("src", respuesta["foto"]);
+
+			}else{
+
+				$(".previsualizarEditar").attr("src", "vistas/img/luminarias/default/anonymous.png");
+
+			}
+
 			$("#idProyect").val(respuesta["idProyect"]);
 			$("#idRegistro").val(respuesta["idR"]);
 

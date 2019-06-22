@@ -62,6 +62,7 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function(){
           	var stock = respuesta["stock"];
           	var precio = respuesta["precio_venta"];
           	var proyecto = respuesta['nomProyecto'];
+          	var tipoMe = respuesta['tipoM'];
           	var IDproyecto = respuesta['id_categoria'];
 
           	/*=============================================
@@ -97,6 +98,8 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function(){
 	              '<input type="text" class="form-control nuevaDescripcionProducto" idProducto="'+idProducto+'" name="agregarProducto" value="'+descripcion+'" readonly required>'+
 
 	            '</div>'+
+
+	            '<input type="text" class="form-control nuevaMedida" idProducto="'+idProducto+'" name="nuevaMedida" value="'+tipoMe+'" readonly required>'+
 
 	          '</div>'+
 
@@ -332,6 +335,8 @@ $(".formularioVenta").on("change", "select.nuevaDescripcionProducto", function()
 
 	var nombreProducto = $(this).val();
 
+	var nuevaTM = $(this).parent().parent().parent().children().children().children(".nuevaMedida");
+
 	var nuevaDescripcionProducto = $(this).parent().parent().parent().children().children().children(".nuevaDescripcionProducto");
 
 	var agregarProyecto = $(this).parent().parent().parent().children().children().children(".agregarProyecto");
@@ -358,6 +363,7 @@ $(".formularioVenta").on("change", "select.nuevaDescripcionProducto", function()
       	success:function(respuesta){
       	    
       	    $(nuevaDescripcionProducto).attr("idProducto", respuesta["id"]);
+      	    $(nuevaTM).val(respuesta["tipoM"]);
 			$(nuevaCantidadProducto).attr("stock", respuesta["stock"]);
 			$(agregarID).val(respuesta["id_categoria"]);
 			$(agregarProyecto).val(respuesta["nomProyecto"]);
@@ -433,6 +439,8 @@ function listarProductos(){
 
 	var descripcion = $(".nuevaDescripcionProducto");
 
+	var medida = $(".nuevaMedida");
+
 	var cantidad = $(".nuevaCantidadProducto");
 
 	//var precio = $(".nuevoPrecioProducto");
@@ -445,6 +453,7 @@ function listarProductos(){
 
 		listaProductos.push({ "id" : $(descripcion[i]).attr("idProducto"), 
 							  "descripcion" : $(descripcion[i]).val(),
+							  "tmedida" : $(medida[i]).val(),
 							  "cantidad" : $(cantidad[i]).val(),
 							  "stock" : $(cantidad[i]).attr("nuevoStock"),
 							  //"precio" : $(precio[i]).attr("precioReal"),
@@ -471,13 +480,13 @@ $(".tablas").on("click", ".btnEditarProgreso", function(){
 })
 
 /*=============================================
-BOTON CANCELAR EDICION
+BOTON VER PROGRESO
 =============================================*/
-$(".tablas").on("click", ".btnRegregsarHistorial", function(){
+$(".tablas").on("click", ".btnVerProgreso", function(){
 
 	var idProgreso = $(this).attr("idProgreso");
 
-	window.location = "index.php?ruta=historial-progresos";
+	window.location = "index.php?ruta=ver-progreso&idProgreso="+idProgreso;
 
 
 })

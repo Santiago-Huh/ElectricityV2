@@ -25,7 +25,75 @@ class ControladorRegistro{
 
 		if (isset($_POST["lumina"])){
 			
-			if (preg_match('/^[0-9]+$/', $_POST["lumina"])) {
+			if (preg_match('/^[0-9]+$/', $_POST["lumina"])&&
+				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["luminarianueva"])) {
+
+				/*=============================================
+				VALIDAR IMAGEN
+				=============================================*/
+
+				$ruta = " ";
+
+				if(isset($_FILES["nuevaFotoLumi"]["tmp_name"])){
+
+					list($ancho, $alto) = getimagesize($_FILES["nuevaFotoLumi"]["tmp_name"]);
+
+					$nuevoAncho = 500;
+					$nuevoAlto = 500;
+
+					/*=============================================
+					CREAMOS EL DIRECTORIO DONDE VAMOS A GUARDAR LA FOTO DEL USUARIO
+					=============================================*/
+
+					$directorio = "vistas/img/luminarias/".$_POST["luminarianueva"];
+
+					mkdir($directorio, 0755);
+
+					/*=============================================
+					DE ACUERDO AL TIPO DE IMAGEN APLICAMOS LAS FUNCIONES POR DEFECTO DE PHP
+					=============================================*/
+
+					if($_FILES["nuevaFotoLumi"]["type"] == "image/jpeg"){
+
+						/*=============================================
+						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
+						=============================================*/
+
+						$aleatorio = mt_rand(100,999);
+
+						$ruta = "vistas/img/luminarias/".$_POST["luminarianueva"]."/".$aleatorio.".jpg";
+
+						$origen = imagecreatefromjpeg($_FILES["nuevaFotoLumi"]["tmp_name"]);						
+
+						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+
+						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+
+						imagejpeg($destino, $ruta);
+
+					}
+
+					if($_FILES["nuevaFotoLumi"]["type"] == "image/png"){
+
+						/*=============================================
+						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
+						=============================================*/
+
+						$aleatorio = mt_rand(100,999);
+
+						$ruta = "vistas/img/luminarias/".$_POST["luminarianueva"]."/".$aleatorio.".png";
+
+						$origen = imagecreatefrompng($_FILES["nuevaFotoLumi"]["tmp_name"]);						
+
+						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+
+						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+
+						imagepng($destino, $ruta);
+
+					}
+
+				}
 				
 				$tabla = "registro";
 
@@ -50,7 +118,12 @@ class ControladorRegistro{
 								"instalador" => $_POST["instalador"],
 								"tipoP" => $_POST["tipodeposte"],
 								"modeloLE" => $_POST["luminariaexistente"],
-								"potenciaLE" => $_POST["potencialuminaria"]);
+								"potenciaLE" => $_POST["potencialuminaria"],
+								"modeloLE" => $_POST["luminariaexistente"],
+								"luminew" => $_POST["luminarianueva"],
+								"potencialuminew" => $_POST["potencianueva"],
+								"observaciones" => $_POST["Observ"],
+								"foto" => $ruta);
 
 				$respuesta = ModeloRegistro::mdlIngresarRegistro($tabla, $datos);
 
@@ -203,8 +276,89 @@ class ControladorRegistro{
 				preg_match('/^[#\.\-a-zA-Z0-9 ]+$/', $_POST["editarInstalador"])&&
 				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarTipoP"])&&
 				preg_match('/^[#\.\-a-zA-Z0-9 ]|[a-zA-Z0-9\,]+$/', $_POST["editarLumiE"])&&
-				preg_match('/^[#\.\-a-zA-Z0-9 ]+$/', $_POST["editarPotencia"])){
+				preg_match('/^[#\.\-a-zA-Z0-9 ]+$/', $_POST["editarPotencia"])&&
+				preg_match('/^[#\.\-a-zA-Z0-9 ]+$/', $_POST["editarLumiN"])&&
+				preg_match('/^[#\.\-a-zA-Z0-9 ]+$/', $_POST["editarPotenciaN"])&&
+				preg_match('/^[#\.\-a-zA-Z0-9 ]|[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]|[a-zA-Z, ]*$/', $_POST["editarObser"])){
 
+				/*=============================================
+				VALIDAR IMAGEN
+				=============================================*/
+
+				$ruta = $_POST["fotoActualLumi"];
+
+				if(isset($_FILES["editarFotoLumi"]["tmp_name"]) && !empty($_FILES["editarFotoLumi"]["tmp_name"])){
+
+					list($ancho, $alto) = getimagesize($_FILES["editarFotoLumi"]["tmp_name"]);
+
+					$nuevoAncho = 500;
+					$nuevoAlto = 500;
+
+					/*=============================================
+					CREAMOS EL DIRECTORIO DONDE VAMOS A GUARDAR LA FOTO DEL USUARIO
+					=============================================*/
+
+					$directorio = "vistas/img/luminarias/".$_POST["editarLumiN"];
+
+					/*=============================================
+					PRIMERO PREGUNTAMOS SI EXISTE OTRA IMAGEN EN LA BD
+					=============================================*/
+
+					if(!empty($_POST["fotoActualLumi"])){
+
+						unlink($_POST["fotoActualLumi"]);
+
+					}else{
+
+						mkdir($directorio, 0755);
+
+					}	
+
+					/*=============================================
+					DE ACUERDO AL TIPO DE IMAGEN APLICAMOS LAS FUNCIONES POR DEFECTO DE PHP
+					=============================================*/
+
+					if($_FILES["editarFotoLumi"]["type"] == "image/jpeg"){
+
+						/*=============================================
+						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
+						=============================================*/
+
+						$aleatorio = mt_rand(100,999);
+
+						$ruta = "vistas/img/luminarias/".$_POST["editarLumiN"]."/".$aleatorio.".jpg";
+
+						$origen = imagecreatefromjpeg($_FILES["editarFotoLumi"]["tmp_name"]);						
+
+						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+
+						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+
+						imagejpeg($destino, $ruta);
+
+					}
+
+					if($_FILES["editarFotoLumi"]["type"] == "image/png"){
+
+						/*=============================================
+						GUARDAMOS LA IMAGEN EN EL DIRECTORIO
+						=============================================*/
+
+						$aleatorio = mt_rand(100,999);
+
+						$ruta = "vistas/img/luminarias/".$_POST["editarLumiN"]."/".$aleatorio.".png";
+
+						$origen = imagecreatefrompng($_FILES["editarFotoLumi"]["tmp_name"]);						
+
+						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+
+						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+
+						imagepng($destino, $ruta);
+
+					}
+
+				}
 
 				$tabla = "registro";
 
@@ -231,6 +385,10 @@ class ControladorRegistro{
 								"tipoP"=>$_POST["editarTipoP"],
 								"modeloLE"=>$_POST["editarLumiE"],
 								"potenciaLE"=>$_POST["editarPotencia"],
+								"luminew"=>$_POST["editarLumiN"],
+								"potencialuminew"=>$_POST["editarPotenciaN"],
+								"observaciones"=>$_POST["editarObser"],
+								"foto"=>$ruta,
 								"idProyect"=>$_POST["idProyect"],
 							    "idR"=>$_POST["idRegistro"]);
 
