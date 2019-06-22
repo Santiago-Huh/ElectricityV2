@@ -211,7 +211,7 @@
 
 					echo '<li>
 
-						<a href="reportes">
+						<a href="#">
 							
 							<i class="fa fa-circle-o"></i>
 							<span>Reporte de avances</span>
