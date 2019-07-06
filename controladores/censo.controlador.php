@@ -48,7 +48,8 @@ class ControladorCenso{
 								"instalador" => $_POST["instalador"],
 								"tipoP" => $_POST["tipodeposte"],
 								"modeloLE" => $_POST["luminariaexistente"],
-								"potenciaLE" => $_POST["potencialuminaria"]);
+								"potenciaLE" => $_POST["potencialuminaria"],
+								"obser" => $_POST["Observaciones"]);
 
 				$respuesta = ModeloCenso::mdlIngresarCenso($tabla, $datos);
 
@@ -124,7 +125,8 @@ class ControladorCenso{
 				preg_match('/^[#\.\-a-zA-Z0-9 ]+$/', $_POST["editarInstalador"])&&
 				preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["editarTipoP"])&&
 				preg_match('/^[#\.\-a-zA-Z0-9 ]|[a-zA-Z0-9\,]+$/', $_POST["editarLumiE"])&&
-				preg_match('/^[#\.\-a-zA-Z0-9 ]+$/', $_POST["editarPotencia"])){
+				preg_match('/^[#\.\-a-zA-Z0-9 ]+$/', $_POST["editarPotencia"])&&
+				preg_match('/^[#\.\-a-zA-Z0-9 ]|[a-zA-Z0-9\,]|[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]|[a-zA-Z, ]*$/', $_POST["editarObser"])){
 
 
 				$tabla = "censo";
@@ -151,6 +153,7 @@ class ControladorCenso{
 								"tipoP"=>$_POST["editarTipoP"],
 								"modeloLE"=>$_POST["editarLumiE"],
 								"potenciaLE"=>$_POST["editarPotencia"],
+								"obser"=>$_POST["editarObser"],
 							    "idC"=>$_POST["idCenso"]);
 
 				$respuesta = ModeloCenso::mdlEditarCenso($tabla, $datos);

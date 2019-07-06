@@ -68,6 +68,15 @@ $(".tablas").on("click", ".btnAgregarRegistro", function(){
 })
 
 /*=============================================
+BOTON EDITAR PROGRESO
+=============================================*/
+$(".tablas").on("click", ".btnVerMateriales", function(){
+	var idProyecto = $(this).attr("idProyecto");
+	window.location = "index.php?ruta=ver-promate&idProyecto="+idProyecto;
+
+})
+
+/*=============================================
 ELIMINAR PROYECTO
 =============================================*/
 $(".tablas").on("click", ".btnEliminarCategoria", function(){

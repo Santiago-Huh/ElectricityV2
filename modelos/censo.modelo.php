@@ -42,7 +42,7 @@ class ModeloCenso{
 	=============================================*/
 
 	static public function mdlIngresarCenso($tabla, $datos){
-		$stmt = conexion::conectar()->prepare("INSERT INTO $tabla(lumi, luminId, rpu, col, calle, alP, tipoVi, ubiP, disIn, carriles, co, estaC, alimen, lumiAR, latitud, longitud, instalador, tipoP, modeloLE, potenciaLE) VALUES(:lumi, :luminId, :rpu, :col, :calle, :alP, :tipoVi, :ubiP, :disIn, :carriles, :co, :estaC, :alimen, :lumiAR, :latitud, :longitud, :instalador, :tipoP, :modeloLE, :potenciaLE)");
+		$stmt = conexion::conectar()->prepare("INSERT INTO $tabla(lumi, luminId, rpu, col, calle, alP, tipoVi, ubiP, disIn, carriles, co, estaC, alimen, lumiAR, latitud, longitud, instalador, tipoP, modeloLE, potenciaLE, obser) VALUES(:lumi, :luminId, :rpu, :col, :calle, :alP, :tipoVi, :ubiP, :disIn, :carriles, :co, :estaC, :alimen, :lumiAR, :latitud, :longitud, :instalador, :tipoP, :modeloLE, :potenciaLE, :obser)");
 
 		$stmt->bindParam(":lumi", $datos["lumi"], PDO::PARAM_STR);
 		$stmt->bindParam(":luminId", $datos["luminId"], PDO::PARAM_STR);
@@ -64,6 +64,7 @@ class ModeloCenso{
 		$stmt->bindParam(":tipoP", $datos["tipoP"], PDO::PARAM_STR);
 		$stmt->bindParam(":modeloLE", $datos["modeloLE"], PDO::PARAM_STR);
 		$stmt->bindParam(":potenciaLE", $datos["potenciaLE"], PDO::PARAM_STR);
+		$stmt->bindParam(":obser", $datos["obser"], PDO::PARAM_STR);
 
 		if ($stmt->execute()) {
 			
@@ -83,7 +84,7 @@ class ModeloCenso{
 
 	static public function mdlEditarCenso($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET lumi = :lumi, luminId = :luminId, rpu = :rpu, col = :col, calle = :calle, alP = :alP, tipoVi = :tipoVi, ubiP = :ubiP, disIn = :disIn, carriles = :carriles, co = :co, estaC = :estaC, alimen = :alimen, lumiAR = :lumiAR, latitud = :latitud, longitud = :longitud, instalador = :instalador, tipoP = :tipoP, modeloLE = :modeloLE, potenciaLE = :potenciaLE WHERE idC = :idC");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET lumi = :lumi, luminId = :luminId, rpu = :rpu, col = :col, calle = :calle, alP = :alP, tipoVi = :tipoVi, ubiP = :ubiP, disIn = :disIn, carriles = :carriles, co = :co, estaC = :estaC, alimen = :alimen, lumiAR = :lumiAR, latitud = :latitud, longitud = :longitud, instalador = :instalador, tipoP = :tipoP, modeloLE = :modeloLE, potenciaLE = :potenciaLE, obser = :obser WHERE idC = :idC");
 
 		$stmt->bindParam(":lumi", $datos["lumi"], PDO::PARAM_STR);
 		$stmt->bindParam(":luminId", $datos["luminId"], PDO::PARAM_STR);
@@ -105,6 +106,7 @@ class ModeloCenso{
 		$stmt->bindParam(":tipoP", $datos["tipoP"], PDO::PARAM_STR);
 		$stmt->bindParam(":modeloLE", $datos["modeloLE"], PDO::PARAM_STR);
 		$stmt->bindParam(":potenciaLE", $datos["potenciaLE"], PDO::PARAM_STR);
+		$stmt->bindParam(":obser", $datos["obser"], PDO::PARAM_STR);
 		$stmt->bindParam(":idC", $datos["idC"], PDO::PARAM_INT);
 
 		if($stmt->execute()){

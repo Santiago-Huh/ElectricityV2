@@ -481,7 +481,24 @@ if($_SESSION["perfil"] == "Especial"){
 
               </div>
 
+              <br>
+              <hr>
+              <br>
 
+              <div class="row">
+
+              <div class="col-lg-4">
+
+                <div class="form-group">
+
+                    <label>Observaciones</label>
+
+                    <textarea rows="4" class="form-control input-lg" cols="50" name="Observaciones" placeholder="Observaciones" ></textarea>
+
+                </div>
+
+                </div>
+                </div>
 
 
 

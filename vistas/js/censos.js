@@ -38,6 +38,7 @@ $(".tablas").on("click", ".btnEditarCenso", function(){
 			$("#editarTipoP").val(respuesta["tipoP"]);
 			$("#editarLumiE").val(respuesta["modeloLE"]);
 			$("#editarPotencia").val(respuesta["potenciaLE"]);
+			$(".editarObser").val(respuesta["obser"]);
 			$("#idCenso").val(respuesta["idC"]);
 
 		}

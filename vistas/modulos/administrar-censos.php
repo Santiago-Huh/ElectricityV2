@@ -77,6 +77,7 @@
              <th>Tipo Poste</th>
              <th>Modelo Luminaria</th>
              <th>Potencia Luminaria</th>
+             <th>Observaciones</th>
              <th>Acciones</th>
 
            </tr> 
@@ -118,6 +119,7 @@
                       <td class="text-uppercase">'.$value["tipoP"].'</td>
                       <td class="text-uppercase">'.$value["modeloLE"].'</td>
                       <td class="text-uppercase">'.$value["potenciaLE"].'</td>
+                      <td class="text-uppercase">'.$value["obser"].'</td>
 
                       <td>
 
@@ -627,6 +629,22 @@
                   </div>
 
                 </div>
+
+              <div class="row">
+
+                <div class="col-lg-4">
+
+                  <div class="form-group">
+
+                    <label>Observaciones</label>
+
+                    <textarea rows="4" class="form-control input-lg editarObser" cols="50" name="editarObser" placeholder="Observaciones" ></textarea>
+
+                  </div>
+
+                </div>
+
+              </div>
 
               </div>
 
