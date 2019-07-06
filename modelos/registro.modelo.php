@@ -41,7 +41,7 @@ class ModeloRegistro{
 	=============================================*/
 
 	static public function mdlIngresarRegistro($tabla, $datos){
-		$stmt = conexion::conectar()->prepare("INSERT INTO $tabla(idProyect, nomProyect, lumi, luminId, rpu, col, calle, alP, tipoVi, ubiP, disIn, carriles, co, estaC, alimen, lumiAR, latitud, longitud, instalador, tipoP, modeloLE, potenciaLE, luminew, potencialuminew, observaciones, foto) VALUES(:idProyect, :nomProyect, :lumi, :luminId, :rpu, :col, :calle, :alP, :tipoVi, :ubiP, :disIn, :carriles, :co, :estaC, :alimen, :lumiAR, :latitud, :longitud, :instalador, :tipoP, :modeloLE, :potenciaLE, :luminew, :potencialuminew, :observaciones, :foto)");
+		$stmt = conexion::conectar()->prepare("INSERT INTO $tabla(idProyect, nomProyect, lumi, luminId, rpu, col, calle, alP, tipoVi, ubiP, disIn, carriles, co, estaC, alimen, lumiAR, instalador, tipoP, modeloLE, potenciaLE, luminew, potencialuminew, observaciones, foto) VALUES(:idProyect, :nomProyect, :lumi, :luminId, :rpu, :col, :calle, :alP, :tipoVi, :ubiP, :disIn, :carriles, :co, :estaC, :alimen, :lumiAR, :latitud, :longitud, :instalador, :tipoP, :modeloLE, :potenciaLE, :luminew, :potencialuminew, :observaciones, :foto)");
 
 		$stmt->bindParam(":idProyect", $datos["idProyect"], PDO::PARAM_STR);
 		$stmt->bindParam(":nomProyect", $datos["nomProyect"], PDO::PARAM_STR);
@@ -83,40 +83,12 @@ class ModeloRegistro{
 	}
 
 	/*=============================================
-	CREAR RESGISTRO
-	=============================================*/
-
-	/*static public function mdlIngresarRegistro($tabla, $datos){
-		$stmt = conexion::conectar()->prepare("INSERT INTO $tabla(modeloLI, potenciaLI, instaVT, instaCF, instaCD, instaBP, instaTGPC, obser) VALUES(:modeloLI, :potenciaLI, :instaVT, :instaCF, :instaCD, :instaBP, :instaTGPC, :obser)");
-
-		$stmt->bindParam(":modeloLI", $datos["modeloLI"], PDO::PARAM_STR);
-		$stmt->bindParam(":potenciaLI", $datos["potenciaLI"], PDO::PARAM_STR);
-		$stmt->bindParam(":instaVT", $datos["instaVT"], PDO::PARAM_STR);
-		$stmt->bindParam(":instaCF", $datos["instaCF"], PDO::PARAM_STR);
-		$stmt->bindParam(":instaCD", $datos["instaCD"], PDO::PARAM_STR);
-		$stmt->bindParam(":instaBP", $datos["instaBP"], PDO::PARAM_STR);
-		$stmt->bindParam(":instaTGPC", $datos["instaTGPC"], PDO::PARAM_STR);
-		$stmt->bindParam(":obser", $datos["obser"], PDO::PARAM_STR);
-
-		if ($stmt->execute()) {
-			
-			return "ok";
-		}else{
-
-			return "error";
-		}
-
-		$stmt->close();
-		$stmt = null;
-	}*/
-
-	/*=============================================
 	EDITAR REGISTRO
 	=============================================*/
 
 	static public function mdlEditarRegistro($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET idProyect = :idProyect, nomProyect = :nomProyect, lumi = :lumi, luminId = :luminId, rpu = :rpu, col = :col, calle = :calle, alP = :alP, tipoVi = :tipoVi, ubiP = :ubiP, disIn = :disIn, carriles = :carriles, co = :co, estaC = :estaC, alimen = :alimen, lumiAR = :lumiAR, latitud = :latitud, longitud = :longitud, instalador = :instalador, tipoP = :tipoP, modeloLE = :modeloLE, potenciaLE = :potenciaLE, luminew = :luminew, potencialuminew = :potencialuminew, observaciones = :observaciones, foto = :foto WHERE idR = :idR");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET idProyect = :idProyect, nomProyect = :nomProyect, lumi = :lumi, luminId = :luminId, rpu = :rpu, col = :col, calle = :calle, alP = :alP, tipoVi = :tipoVi, ubiP = :ubiP, disIn = :disIn, carriles = :carriles, co = :co, estaC = :estaC, alimen = :alimen, lumiAR = :lumiAR, instalador = :instalador, tipoP = :tipoP, modeloLE = :modeloLE, potenciaLE = :potenciaLE, luminew = :luminew, potencialuminew = :potencialuminew, observaciones = :observaciones, foto = :foto WHERE idR = :idR");
 
 		$stmt->bindParam(":nomProyect", $datos["nomProyect"], PDO::PARAM_STR);
 		$stmt->bindParam(":lumi", $datos["lumi"], PDO::PARAM_STR);

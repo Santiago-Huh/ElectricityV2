@@ -912,7 +912,6 @@ MODAL EDITAR CLIENTE
                   <div class="col-lg-4">
                       <div class="form-group">
                           <label>Latitud</label>
-                          <!--AQUI PON UN VARCHAR PORQUE LA LATITUD Y LONGITUD LLEVAN COMAS, PUNTOS Y EL SIGNO DE GRADOS-->
                           <input class="form-control" type="text" id="latitud" name="latitud">
                       </div>
                   </div>

@@ -16,6 +16,9 @@ session_start();
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
+  <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+
   <!--<link rel="icon" href="vistas/img/plantilla/icono-negro.png">-->
 
    <!--=====================================
@@ -169,6 +172,7 @@ CUERPO DOCUMENTO
          $_GET["ruta"] == "clientes" ||
          $_GET["ruta"] == "ventas" ||
          $_GET["ruta"] == "mapa" ||
+         $_GET["ruta"] == "registromap" ||
          $_GET["ruta"] == "crear-venta" ||
          $_GET["ruta"] == "editar-venta" ||
          $_GET["ruta"] == "editar-progreso" ||

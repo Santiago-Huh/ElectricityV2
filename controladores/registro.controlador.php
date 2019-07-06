@@ -379,8 +379,8 @@ class ControladorRegistro{
 								"estaC"=>$_POST["editarEstaC"],
 								"alimen"=>$_POST["editarAlimen"],
 								"lumiAR"=>$_POST["editarLumiAR"],
-								"latitud"=>$_POST["editarLatitud"],
-								"longitud"=>$_POST["editarLongitud"],
+								/*"latitud"=>$_POST["editarLatitud"],
+								"longitud"=>$_POST["editarLongitud"],*/
 								"instalador"=>$_POST["editarInstalador"],
 								"tipoP"=>$_POST["editarTipoP"],
 								"modeloLE"=>$_POST["editarLumiE"],
