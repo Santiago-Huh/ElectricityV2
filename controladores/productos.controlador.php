@@ -17,6 +17,20 @@ class ControladorProductos{
 	}
 
 	/*=============================================
+	MOSTRAR PROMATE
+	=============================================*/
+
+	static public function ctrMostrarPromate($item, $valor){
+
+		$tabla = "productos";
+
+		$respuesta = ModeloProductos::mdlMostrarPromate($tabla, $item, $valor);
+
+		return $respuesta;
+
+	}
+
+	/*=============================================
 	CREAR PRODUCTO
 	=============================================*/
 

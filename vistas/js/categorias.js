@@ -68,11 +68,11 @@ $(".tablas").on("click", ".btnAgregarRegistro", function(){
 })
 
 /*=============================================
-BOTON EDITAR PROGRESO
+BOTON VER PROMATE
 =============================================*/
 $(".tablas").on("click", ".btnVerMateriales", function(){
-	var idProyecto = $(this).attr("idProyecto");
-	window.location = "index.php?ruta=ver-promate&idProyecto="+idProyecto;
+	var idPromate = $(this).attr("idPromate");
+	window.location = "index.php?ruta=ver-promate&idPromate="+idPromate;
 
 })
 

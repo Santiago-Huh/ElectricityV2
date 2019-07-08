@@ -113,7 +113,7 @@ if($_SESSION["perfil"] == "Especial"){
                           
                         <button class="btn btn-warning btnEditarCategoria" data-toggle="modal" data-target="#modalEditarCategoria" idCategoria="'.$value["id"].'"><i class="fa fa-pencil"></i></button>
                         <button class="btn btn-success btnAgregarRegistro" data-toggle="modal" data-target="#modalAgregarRegistro" idProyecto="'.$value["id"].'"><i class="fa fa-leanpub"></i></button>
-                        <button class="btn btn-info btnVerMateriales" idProyecto="'.$value["id"].'"><i class="fa fa-cubes"></i></button>';
+                        <button class="btn btn-info btnVerMateriales" idPromate="'.$value["id"].'"><i class="fa fa-cubes"></i></button>';
 
                       if($_SESSION["perfil"] == "Administrador"){
 
