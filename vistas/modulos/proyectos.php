@@ -743,9 +743,10 @@ MODAL EDITAR CLIENTE
                   <div class="col-lg-4">
                       <div class="form-group">
                           <label>Identificador de luminaria</label>
-                          <input class="form-control" type="text" id="luminaID" name="luminaID">
+                          <input class="form-control" type="text" id="luminaID" name="luminaID" required>
                           <input  type="hidden" name="idProyecto" id="idProyecto" required>
                           <input  type="hidden" name="nomPro" id="nomPro" required>
+                          <div id="result-username"></div>
                       </div>
                   </div>
 
