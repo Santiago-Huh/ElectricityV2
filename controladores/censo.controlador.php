@@ -107,7 +107,7 @@ class ControladorCenso{
 		if(isset($_POST["editarLumi"])){
 
 			if(preg_match('/^[0-9]+$/', $_POST["editarLumi"]) &&
-				preg_match('/^[0-9]+$/', $_POST["editarLuminId"])&&
+				preg_match('/^[0-9]|[#\.\-a-zA-Z0-9 ]+$/', $_POST["editarLuminId"])&&
 				preg_match('/^[0-9]+$/', $_POST["editarRpu"])&&
 				preg_match('/^[#\.\-a-zA-Z0-9 ]+$/', $_POST["editarCol"])&&
 				preg_match('/^[#\.\-a-zA-Z0-9 ]+$/', $_POST["editarCalle"])&&

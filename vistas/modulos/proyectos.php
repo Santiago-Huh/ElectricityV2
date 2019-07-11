@@ -746,7 +746,7 @@ MODAL EDITAR CLIENTE
                           <input class="form-control" type="text" id="luminaID" name="luminaID" required>
                           <input  type="hidden" name="idProyecto" id="idProyecto" required>
                           <input  type="hidden" name="nomPro" id="nomPro" required>
-                          <div id="result-username"></div>
+                          <div id="result-username" align="center"></div>
                       </div>
                   </div>
 
@@ -988,7 +988,7 @@ MODAL EDITAR CLIENTE
                   </div>
         
                     <div class="input-group">
-                        <textarea rows="4" class="form-control input-lg" cols="50" name="Observ" placeholder="Observaciones" required></textarea>
+                        <textarea rows="4" class="form-control input-lg" cols="50" name="Observ" placeholder="Observaciones"></textarea>
                     </div>
 
                 </div>

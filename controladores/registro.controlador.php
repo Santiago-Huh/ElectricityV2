@@ -257,8 +257,8 @@ class ControladorRegistro{
 		if(isset($_POST["editarLumi"])){
 
 			if(preg_match('/^[0-9]+$/', $_POST["editarLumi"]) &&
-				preg_match('/^[#\.\-a-zA-Z0-9 ]+$/', $_POST["nomP"])&&
-				preg_match('/^[0-9]+$/', $_POST["editarLuminId"])&&
+				preg_match('/^[#\.\-a-zA-Z0-9 ]|[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nomP"])&&
+				preg_match('/^[0-9]|[#\.\-a-zA-Z0-9 ]+$/', $_POST["editarLuminId"])&&
 				preg_match('/^[0-9]+$/', $_POST["editarRpu"])&&
 				preg_match('/^[#\.\-a-zA-Z0-9 ]+$/', $_POST["editarCol"])&&
 				preg_match('/^[#\.\-a-zA-Z0-9 ]+$/', $_POST["editarCalle"])&&
@@ -312,7 +312,7 @@ class ControladorRegistro{
 
 						mkdir($directorio, 0755);
 
-					}	
+					}
 
 					/*=============================================
 					DE ACUERDO AL TIPO DE IMAGEN APLICAMOS LAS FUNCIONES POR DEFECTO DE PHP
@@ -379,8 +379,8 @@ class ControladorRegistro{
 								"estaC"=>$_POST["editarEstaC"],
 								"alimen"=>$_POST["editarAlimen"],
 								"lumiAR"=>$_POST["editarLumiAR"],
-								/*"latitud"=>$_POST["editarLatitud"],
-								"longitud"=>$_POST["editarLongitud"],*/
+								"latitud"=>$_POST["editarLatitud"],
+								"longitud"=>$_POST["editarLongitud"],
 								"instalador"=>$_POST["editarInstalador"],
 								"tipoP"=>$_POST["editarTipoP"],
 								"modeloLE"=>$_POST["editarLumiE"],

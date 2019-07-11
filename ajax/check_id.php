@@ -8,12 +8,13 @@ if (isset($_POST)) {
         'SELECT * FROM registro WHERE luminId = "'.strtolower($idLumi).'"'
     );
 
+    $result->bindValue('luminId',$idLumi);
     $result->execute();
     $verificar = $result->fetch();
  
     if ($verificar["luminId"] > 0) {
-        echo '<div class="alert alert-danger"><strong>Oh no!</strong> ID de luminaria no disponible.</div>';
+        echo '<div class="alert alert-danger"><strong>Error!</strong> ID de luminaria ya existente.</div>';
     } else {
-        echo '<div class="alert alert-success"><strong>Enhorabuena!</strong> ID disponible.</div>';
+        //echo '<div class="alert alert-success"><strong>Enhorabuena!</strong> ID disponible.</div>';
     }
 }

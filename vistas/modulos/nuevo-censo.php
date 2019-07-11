@@ -67,6 +67,7 @@ if($_SESSION["perfil"] == "Especial"){
                         <label>Identificador de luminaria</label>
 
                         <input class="form-control" type="text" placeholder="ID de luminaria" id="luminaID" name="luminaID">
+                        <div id="result-username" align="center"></div>
     
                     </div>
 

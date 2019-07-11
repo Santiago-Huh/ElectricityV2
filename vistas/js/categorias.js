@@ -80,15 +80,15 @@ $(".tablas").on("click", ".btnVerMateriales", function(){
 BOTON VERIFICAR ID LUMINARIA keyup blur
 =============================================*/
 $(document).ready(function() {	
-  $('#luminaID').on('keyup', function() {
-      $('#result-username').html('<img src="vistas/img/plantilla/tenor.gif" width="80" height="80" />').fadeOut(1000);
+  $('#luminaID').on('blur', function() {
+      $('#result-username').html('<img src="vistas/img/plantilla/tenor.gif" width="60" height="50" />').fadeOut(1000);
 
       var idLumi = $(this).val();		
       var dataString = 'luminaID='+idLumi;
 
       $.ajax({
           type: "POST",
-          url: "ajax/check_idlumi.php",
+          url: "ajax/check_id.php",
           data: dataString,
           success: function(data) {
               $('#result-username').fadeIn(1000).html(data);
