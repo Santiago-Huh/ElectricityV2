@@ -224,7 +224,7 @@ class ControladorCenso{
 
 					swal({
 						  type: "success",
-						  title: "El proyecto ha sido eliminado correctamente",
+						  title: "El censo ha sido eliminado correctamente",
 						  showConfirmButton: true,
 						  confirmButtonText: "Cerrar"
 						  }).then(function(result){
