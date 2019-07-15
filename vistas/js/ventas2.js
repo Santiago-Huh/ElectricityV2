@@ -384,7 +384,7 @@ $(".formularioVenta").on("change", "select.nuevaDescripcionProducto", function()
 MODIFICAR LA CANTIDAD
 =============================================*/
 
-$(".formularioVenta").on("change", "input.nuevaCantidadProducto", function(){
+$(".formularioVenta").on("keyup", "input.nuevaCantidadProducto", function(){
 
 	//var precio = $(this).parent().parent().children(".ingresoPrecio").children().children(".nuevoPrecioProducto");
 

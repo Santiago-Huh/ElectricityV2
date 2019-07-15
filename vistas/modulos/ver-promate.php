@@ -66,8 +66,8 @@ if($_SESSION["perfil"] == "Especial"){
            <th>Material Disponible</th>
            <th>Agregado</th>
            <!--<th>Total</th>
-           <th>Fecha</th>-->
-           <th></th>
+           <th>Fecha</th>
+           <th></th>-->
 
          </tr> 
 
@@ -79,11 +79,12 @@ if($_SESSION["perfil"] == "Especial"){
 
             $item = "id_categoria";
             $valor = $_GET["idPromate"];
+            //$orden = "id";
 
             $productos = ControladorProductos::ctrMostrarPromate($item, $valor);
-            dd($productos);
+            $listaproductos = array($productos);
 
-            foreach ($productos as $key => $value) {
+            foreach ($listaproductos as $key => $value) {
 
               echo ' <tr>
 
@@ -93,9 +94,9 @@ if($_SESSION["perfil"] == "Especial"){
                       <td class="text-uppercase">'.$value["nomProyecto"].'</td>
                       <td class="text-uppercase">'.$value["stock"].'</td>
                       <td class="text-uppercase">'.$value["fecha"].'</td>
-                      <!--<td class="text-uppercase"></td>-->
+                      <!--<td class="text-uppercase"></td>
 
-                      <td>
+                      <td>-->
 
                         <div class="btn-group">
                             

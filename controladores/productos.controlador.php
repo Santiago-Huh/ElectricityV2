@@ -25,6 +25,7 @@ class ControladorProductos{
 		$tabla = "productos";
 
 		$respuesta = ModeloProductos::mdlMostrarPromate($tabla, $item, $valor);
+		//var_dump($respuesta);
 
 		return $respuesta;
 

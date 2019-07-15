@@ -77,10 +77,19 @@ $(".tablas").on("click", ".btnVerMateriales", function(){
 })
 
 /*=============================================
+BOTON VER PROGREMATE
+=============================================*/
+$(".tablas").on("click", ".btnVerProgresoMate", function(){
+    var idProgremate = $(this).attr("idProgremate");
+    window.location = "index.php?ruta=ver-progremate&idProgremate="+idProgremate;
+
+})
+
+/*=============================================
 BOTON VERIFICAR ID LUMINARIA keyup blur
 =============================================*/
 $(document).ready(function() {	
-  $('#luminaID').on('blur', function() {
+  $('#luminaID').on('keyup', function() {
       $('#result-username').html('<img src="vistas/img/plantilla/tenor.gif" width="60" height="50" />').fadeOut(1000);
 
       var idLumi = $(this).val();		
